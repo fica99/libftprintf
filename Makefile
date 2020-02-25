@@ -6,12 +6,12 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/02/24 19:23:00 by aashara-         ###   ########.fr        #
+#    Updated: 2020/02/25 21:52:14 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ------------  PROJECT  ----------------------------------------------------- #
-NAME	=		libftprinft.a
+NAME	=		libftprintf.a
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
 SRC_DIR	=		srcs
@@ -19,11 +19,13 @@ HDR_DIR	=		includes
 OBJ_DIR	=		objs
 LIBFT_DIR =		libft
 FT_PRINTF_DIR =	ft_printf
+GNL_DIR =		get_next_line
 
 # ------------  SOURCE FILES  ------------------------------------------------ #
 
 SRC_FLS	=		$(LIBFT_FLS)\
-				$(FT_PRINTF_FLS)
+				$(GNL_FLS)\
+				$(FT_PRINTF_FLS)\
 
 LIBFT_FLS = 	$(LIBFT_DIR)/ft_strlen.c\
 				$(LIBFT_DIR)/ft_strdup.c\
@@ -83,7 +85,6 @@ LIBFT_FLS = 	$(LIBFT_DIR)/ft_strlen.c\
 				$(LIBFT_DIR)/ft_lstadd.c\
 				$(LIBFT_DIR)/ft_lstiter.c\
 				$(LIBFT_DIR)/ft_lstmap.c\
-				$(LIBFT_DIR)/get_next_line.c\
 				$(LIBFT_DIR)/ft_isspace.c\
 				$(LIBFT_DIR)/ft_isupper.c\
 				$(LIBFT_DIR)/ft_swap.c\
@@ -95,6 +96,10 @@ LIBFT_FLS = 	$(LIBFT_DIR)/ft_strlen.c\
 
 
 FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
+				$(FT_PRINTF_DIR)/pf_tables.c\
+				$(FT_PRINTF_DIR)/pf_parse.c\
+
+GNL_FLS = $(GNL_DIR)/get_next_line.c\
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS	=		$(addprefix $(SRC_DIR)/, $(SRC_FLS))
@@ -121,6 +126,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(LIBFT_DIR)
 	mkdir -p $(OBJ_DIR)/$(FT_PRINTF_DIR)
+	mkdir -p $(OBJ_DIR)/$(GNL_DIR)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
