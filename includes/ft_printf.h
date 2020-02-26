@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/26 21:53:48 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/26 23:32:00 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,9 @@ void				pf_spec_c(t_printf *restrict pf);
 void				pf_add_width(t_printf *restrict pf, const size_t len);
 void				pf_add_char(t_printf *restrict pf, const char c);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
+/*
+**					pf_spec_s.c
+*/
+void	        	pf_spec_s(t_printf *restrict pf);
+void				pf_add_spaces(t_printf *restrict pf, size_t n);
 #endif
