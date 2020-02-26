@@ -6,7 +6,7 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/02/25 21:52:14 by aashara-         ###   ########.fr        #
+#    Updated: 2020/02/26 21:44:12 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,8 @@ LIBFT_FLS = 	$(LIBFT_DIR)/ft_strlen.c\
 FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_tables.c\
 				$(FT_PRINTF_DIR)/pf_parse.c\
+				$(FT_PRINTF_DIR)/pf_spec_handlers.c\
+				$(FT_PRINTF_DIR)/pf_buff_managment.c\
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 

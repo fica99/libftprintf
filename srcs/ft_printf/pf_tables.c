@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/25 22:56:38 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:44:39 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,29 @@ t_pf_mod_len		*pf_mod_table(void)
 		is_init = TRUE;
 	}
 	return (table);
+}
+
+
+void				*pf_spec_table(const char c)
+{
+	static char			is_init;
+	static void			*table[ASCII_SIZE];
+
+	if (!is_init)
+	{
+		table['c'] = (void*)&pf_spec_c;
+		// table['s'] = ;
+		// table['p'] = ;
+		// table['d'] = ;
+		// table['i'] = ;
+		// table['o'] = ;
+		// table['u'] = ;
+		// table['x'] = ;
+		// table['X'] = ;
+		// table['f'] = ;
+		// table['e'] = ;
+		// table['g'] = ;
+		is_init = TRUE;
+	}
+	return (table[(size_t)c]);
 }

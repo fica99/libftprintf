@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/25 22:55:54 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:54:46 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static void	pf_parse_mod(const char *restrict format, t_printf *restrict pf)
 
 void		pf_parse_string(const char *restrict format, t_printf *restrict pf)
 {
+	void	(*f)(t_printf *pf);
+
 	if (format[pf->i] == '%')
 	{
 		if (format[pf->i + 1] != '%')
@@ -82,13 +84,13 @@ void		pf_parse_string(const char *restrict format, t_printf *restrict pf)
 			pf_parse_width(format, pf);
 			pf_parse_precision(format, pf);
 			pf_parse_mod(format, pf);
+			if ((f = pf_spec_table(format[(pf->i)++])))
+				f(pf);
 			return ;
 		}
 		else
 			++pf->i;
 	}
-	if (pf->buff_len >= pf->malloc_len)
-		if (!(pf->buff = ft_realloc((void*)pf->buff, pf->malloc_len, (pf->malloc_len *= 2))))
-			exit(1);
+	pf_check_mem(pf, 1);
 	pf->buff[(pf->buff_len)++] = format[(pf->i)++];
 }
