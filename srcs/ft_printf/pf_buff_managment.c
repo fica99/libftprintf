@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/26 21:54:30 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:37:13 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ void			pf_add_char(t_printf *restrict pf, const char c)
 		pf->buff[(pf->buff_len)++] = c;
 	}
 }
+
+// void			pf_add_str(t_printf *restrict pf, const char *str,
+// 														const size_t len)
+// {
+// 	size_t		i;
+
+// 	i = 0;
+// 	while (i < len)
+// 		pf->buff[(pf->buff_len)++] = str[i++];
+// }
+
 
 void			pf_check_mem(t_printf *restrict pf, const size_t add_len)
 {

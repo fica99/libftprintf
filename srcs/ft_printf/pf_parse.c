@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/26 21:54:46 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:55:58 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static void	pf_parse_flags(const char *restrict format,
 
 	pf->flags = PF_FL_INIT;
 	is_valid = TRUE;
-	while (format[++(pf->i)] && is_valid)
+	while (format[pf->i] && is_valid)
 	{
+		++(pf->i);
 		(pf->flags) |= pf_flags_table()[(size_t)format[pf->i]];
 		if (!(pf->flags))
 			is_valid = FALSE;
@@ -78,18 +79,13 @@ void		pf_parse_string(const char *restrict format, t_printf *restrict pf)
 
 	if (format[pf->i] == '%')
 	{
-		if (format[pf->i + 1] != '%')
-		{
-			pf_parse_flags(format, pf);
-			pf_parse_width(format, pf);
-			pf_parse_precision(format, pf);
-			pf_parse_mod(format, pf);
-			if ((f = pf_spec_table(format[(pf->i)++])))
-				f(pf);
-			return ;
-		}
-		else
-			++pf->i;
+		pf_parse_flags(format, pf);
+		pf_parse_width(format, pf);
+		pf_parse_precision(format, pf);
+		pf_parse_mod(format, pf);
+		if ((f = pf_spec_table(format[(pf->i)++])))
+			f(pf);
+		return ;
 	}
 	pf_check_mem(pf, 1);
 	pf->buff[(pf->buff_len)++] = format[(pf->i)++];

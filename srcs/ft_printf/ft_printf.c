@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:11:50 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/25 20:59:41 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:53:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		pf_init_start(t_printf *pf)
 {
 	ft_bzero(pf, sizeof(*pf));
 	pf->malloc_len = PRINTF_BUFF_SIZE;
-	if (!(pf->buff = ft_strnew(pf->malloc_len)))
+	if (!(pf->buff = (char*)malloc(pf->malloc_len * sizeof(char))))
 		exit(1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/26 23:32:00 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/02/27 17:47:06 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,14 @@ void				*pf_spec_table(const char c);
 **					pf_spec_handlers.c
 */
 void				pf_spec_c(t_printf *restrict pf);
+// void				pf_spec_s(t_printf *restrict pf);
+void				pf_spec_percent(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
 void				pf_add_width(t_printf *restrict pf, const size_t len);
 void				pf_add_char(t_printf *restrict pf, const char c);
+// void				pf_add_str(t_printf *restrict pf, const char *str,
+// 															const size_t len);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
-/*
-**					pf_spec_s.c
-*/
-void	        	pf_spec_s(t_printf *restrict pf);
-void				pf_add_spaces(t_printf *restrict pf, size_t n);
 #endif
