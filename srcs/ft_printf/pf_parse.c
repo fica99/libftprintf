@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 17:55:58 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 18:29:54 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	pf_parse_width(const char *restrict format, t_printf *restrict pf)
 
 static void	pf_parse_precision(const char *restrict format, t_printf *restrict pf)
 {
-	pf->prec = 0;
+	pf->prec = -1;
 	if (format[pf->i] == '.')
 	{
 		if (ft_isdigit(format[++(pf->i)]))

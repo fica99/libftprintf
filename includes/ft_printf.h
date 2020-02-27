@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 17:47:06 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 18:33:52 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct		s_printf
 	t_pf_flags		flags;
 	t_pf_mod_len	mod;
 	size_t			width;
-	size_t			prec;
+	int				prec;
 	char			*buff;
 }					t_printf;
 
@@ -76,14 +76,11 @@ void				*pf_spec_table(const char c);
 **					pf_spec_handlers.c
 */
 void				pf_spec_c(t_printf *restrict pf);
-// void				pf_spec_s(t_printf *restrict pf);
+void				pf_spec_s(t_printf *restrict pf);
 void				pf_spec_percent(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
-void				pf_add_width(t_printf *restrict pf, const size_t len);
-void				pf_add_char(t_printf *restrict pf, const char c);
-// void				pf_add_str(t_printf *restrict pf, const char *str,
-// 															const size_t len);
+void				pf_add_str(t_printf *restrict pf, const char *str);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
 #endif

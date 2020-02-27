@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 17:44:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 18:07:47 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void				*pf_spec_table(const char c)
 	{
 		table['c'] = (void*)&pf_spec_c;
 		table['%'] = (void*)&pf_spec_percent;
-		// table['s'] = ;
+		table['s'] = (void*)&pf_spec_s;
 		// table['p'] = ;
 		// table['d'] = ;
 		// table['i'] = ;
