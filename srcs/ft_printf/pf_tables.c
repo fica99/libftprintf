@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 18:07:47 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 22:35:30 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_pf_flags		*pf_flags_table(void)
 	{
 		table['#'] = PF_FL_HASH;
 		table['-'] = PF_FL_MINUS;
-		table['0'] = PF_FL_ZERO;
+		table['O'] = PF_FL_ZERO;
 		table['+'] = PF_FL_PLUS;
 		table[' '] = PF_FL_SPACE;
 		is_init = TRUE;
@@ -57,9 +57,10 @@ void				*pf_spec_table(const char c)
 		table['c'] = (void*)&pf_spec_c;
 		table['%'] = (void*)&pf_spec_percent;
 		table['s'] = (void*)&pf_spec_s;
+		table['d'] = (void*)&pf_spec_int;
+		table['i'] = (void*)&pf_spec_int;
+		table['D'] = (void*)&pf_spec_int;
 		// table['p'] = ;
-		// table['d'] = ;
-		// table['i'] = ;
 		// table['o'] = ;
 		// table['u'] = ;
 		// table['x'] = ;

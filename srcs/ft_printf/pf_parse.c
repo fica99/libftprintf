@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 18:29:54 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 21:21:07 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static void	pf_parse_flags(const char *restrict format,
 									t_printf *restrict pf)
 {
-	char	is_valid;
+	t_pf_flags	tmp;
 
 	pf->flags = PF_FL_INIT;
-	is_valid = TRUE;
-	while (format[pf->i] && is_valid)
+	while (format[pf->i])
 	{
 		++(pf->i);
-		(pf->flags) |= pf_flags_table()[(size_t)format[pf->i]];
-		if (!(pf->flags))
-			is_valid = FALSE;
+		tmp = pf_flags_table()[(size_t)format[pf->i]];
+		if (!tmp)
+			break ;
+		pf->flags |= tmp;
 	}
 }
 
@@ -50,6 +50,8 @@ static void	pf_parse_precision(const char *restrict format, t_printf *restrict p
 			while (ft_isdigit(format[++pf->i]))
 				;
 		}
+		else
+			pf->prec = 0;
 	}
 }
 

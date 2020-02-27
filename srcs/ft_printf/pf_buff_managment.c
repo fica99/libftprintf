@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 18:33:24 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 22:11:04 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 static void		pf_add_width(t_printf *restrict pf, const size_t len)
 {
+	char	symb;
+
+	symb = (pf->flags & PF_FL_ZERO) ? '0' : ' ';
 	while ((pf->width)-- > len)
-		pf->buff[(pf->buff_len)++] = (pf->flags & PF_FL_ZERO) ? '0' : ' ';
+		pf->buff[(pf->buff_len)++] = symb;
 }
 
 static void		pf_add_str_2_buff(t_printf *restrict pf, const char *str,
@@ -23,21 +26,21 @@ static void		pf_add_str_2_buff(t_printf *restrict pf, const char *str,
 {
 	size_t	i;
 
-	if (!str)
-		return ;
 	i = 0;
 	while (str[i] && i < len)
 		pf->buff[pf->buff_len++] = str[i++];
 }
 
-void			pf_add_str(t_printf *restrict pf, const char *str)
+void			pf_add_str(t_printf *restrict pf, char *str)
 {
 	size_t	len;
 
+	if (!str)
+		str = "(null)";
 	len = ft_strlen(str);
-	if (pf->prec >= 0)
-		len = pf->prec;
 	pf_check_mem(pf, pf->width + len);
+	if (pf->prec >= 0 && len > (size_t)pf->prec)
+		len = pf->prec;
 	if (pf->flags & PF_FL_MINUS)
 	{
 		pf_add_str_2_buff(pf, str, len);

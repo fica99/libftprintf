@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 18:33:52 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/27 22:46:26 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF
 
 # include <stdarg.h>
+# include <limits.h>
 # include "libft.h"
 
 # define PRINTF_BUFF_SIZE 10000
@@ -78,9 +79,14 @@ void				*pf_spec_table(const char c);
 void				pf_spec_c(t_printf *restrict pf);
 void				pf_spec_s(t_printf *restrict pf);
 void				pf_spec_percent(t_printf *restrict pf);
+void				pf_spec_int(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
-void				pf_add_str(t_printf *restrict pf, const char *str);
+void				pf_add_str(t_printf *restrict pf, char *str);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
+/*
+**					pf_iltoa.c
+*/
+char				*ft_iltoa(intmax_t n);
 #endif
