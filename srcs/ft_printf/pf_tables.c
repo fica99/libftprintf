@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 22:35:30 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/28 22:55:40 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_pf_flags		*pf_flags_table(void)
 	{
 		table['#'] = PF_FL_HASH;
 		table['-'] = PF_FL_MINUS;
-		table['O'] = PF_FL_ZERO;
+		table['0'] = PF_FL_ZERO;
 		table['+'] = PF_FL_PLUS;
 		table[' '] = PF_FL_SPACE;
 		is_init = TRUE;

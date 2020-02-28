@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 22:46:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/28 20:50:04 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ void				pf_spec_int(t_printf *restrict pf);
 */
 void				pf_add_str(t_printf *restrict pf, char *str);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
+void				pf_add_width(t_printf *restrict pf, const size_t len);
+void				pf_add_str_2_buff(t_printf *restrict pf, const char *str,
+															const size_t len);
 /*
-**					pf_iltoa.c
+**					pf_handle_int.c
 */
-char				*ft_iltoa(intmax_t n);
+void				pf_handle_int(t_printf *restrict pf, intmax_t nb);
 #endif

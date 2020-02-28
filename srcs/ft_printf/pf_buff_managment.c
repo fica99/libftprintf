@@ -6,13 +6,13 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 22:11:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/28 21:10:04 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		pf_add_width(t_printf *restrict pf, const size_t len)
+void		pf_add_width(t_printf *restrict pf, const size_t len)
 {
 	char	symb;
 
@@ -21,7 +21,7 @@ static void		pf_add_width(t_printf *restrict pf, const size_t len)
 		pf->buff[(pf->buff_len)++] = symb;
 }
 
-static void		pf_add_str_2_buff(t_printf *restrict pf, const char *str,
+void		pf_add_str_2_buff(t_printf *restrict pf, const char *str,
 														const size_t len)
 {
 	size_t	i;
