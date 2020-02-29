@@ -1,1 +1,1 @@
-gcc -g -O0 main.c -I includes -L . -lftprintf
+gcc -g main.c -I includes -L . -lftprintf

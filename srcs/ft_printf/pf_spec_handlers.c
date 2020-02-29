@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 17:42:56 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:37:32 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,17 @@ void	pf_spec_percent(t_printf *restrict pf)
 void	pf_spec_int(t_printf *restrict pf)
 {
 	intmax_t	num;
+	char		*str;
 
 	if (pf->flags & PF_FL_PLUS)
 		pf->flags &= ~PF_FL_SPACE;
 	num = va_arg(pf->argptr, intmax_t);
-	if (pf->mod == PF_ML_H)
-		pf_handle_int(pf, (short)num);
-	else if (pf->mod == PF_ML_HH)
-		pf_handle_int(pf, (char)num);
-	else if (pf->mod == PF_ML_L)
-		pf_handle_int(pf, (long)num);
-	else if (pf->mod == PF_ML_LL)
-		pf_handle_int(pf, (long long)num);
-	else if (pf->mod == PF_ML_J || pf->mod == PF_ML_T)
-		pf_handle_int(pf, (intmax_t)num);
-	else if (pf->mod == PF_ML_Z)
-		pf_handle_int(pf, (size_t)num);
-	else
-		pf_handle_int(pf, (int)num);
+	num = pf_convert_nb(pf->mod, num);
+	str = ft_iltoa(num);
+	pf_handle_nb(pf, num, str, 0);
 }
 
-void	pf_spec_pointer(t_printf *restrict pf)
+void	pf_spec_p(t_printf *restrict pf)
 {
 	intmax_t	num;
 	char		*str;
@@ -70,5 +60,5 @@ void	pf_spec_pointer(t_printf *restrict pf)
 		pf->flags &= ~PF_FL_ZERO;
 	num = va_arg(pf->argptr, intmax_t);
 	str = ft_ultoa_base(num, 16, 'a');
-	ft_strdel(&str);
+	pf_handle_nb(pf, num, str, 'p');
 }

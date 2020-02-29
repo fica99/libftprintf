@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 17:39:53 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:33:05 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void				pf_spec_c(t_printf *restrict pf);
 void				pf_spec_s(t_printf *restrict pf);
 void				pf_spec_percent(t_printf *restrict pf);
 void				pf_spec_int(t_printf *restrict pf);
-void				pf_spec_pointer(t_printf *restrict pf);
+void				pf_spec_p(t_printf *restrict pf);
+/*
+**					pf_spec_handlers2.c
+*/
+void				pf_spec_x(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
@@ -90,7 +94,14 @@ void				pf_add_width(t_printf *restrict pf, const size_t len,
 void				pf_add_str_2_buff(t_printf *restrict pf, const char *str,
 															const size_t len);
 /*
-**					pf_handle_int.c
+**					pf_handle_nb.c
 */
-void				pf_handle_int(t_printf *restrict pf, intmax_t nb);
+void				pf_handle_nb(t_printf *restrict pf, intmax_t nb, char *str, char spec);
+intmax_t			pf_convert_nb(t_pf_mod_len mod, intmax_t num);
+intmax_t			pf_convert_unb(t_pf_mod_len mod, intmax_t num);
+/*
+**					pf_ltoa.c
+*/
+char				*ft_ultoa_base(uintmax_t n, int base, char cap);
+char				*ft_iltoa(intmax_t num);
 #endif

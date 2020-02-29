@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 17:39:34 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 18:55:13 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void				*pf_spec_table(const char c)
 		table['s'] = (void*)&pf_spec_s;
 		table['d'] = (void*)&pf_spec_int;
 		table['i'] = (void*)&pf_spec_int;
-		table['p'] = (void*)&pf_spec_pointer;
+		table['p'] = (void*)&pf_spec_p;
+		table['x'] = (void*)&pf_spec_x;
 	//	table['o'] = (void*)&pf_spec_uint;
 	//	table['u'] = (void*)&pf_spec_uint;
-	//	table['x'] = (void*)&pf_spec_uint;
 	//	table['X'] = (void*)&pf_spec_uint;
 		// table['f'] = ;
 		// table['e'] = ;
