@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/28 23:10:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:42:56 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	pf_spec_int(t_printf *restrict pf)
 
 	if (pf->flags & PF_FL_PLUS)
 		pf->flags &= ~PF_FL_SPACE;
-	pf->flags &= ~PF_FL_ZERO;
 	num = va_arg(pf->argptr, intmax_t);
 	if (pf->mod == PF_ML_H)
 		pf_handle_int(pf, (short)num);
@@ -58,4 +57,18 @@ void	pf_spec_int(t_printf *restrict pf)
 		pf_handle_int(pf, (size_t)num);
 	else
 		pf_handle_int(pf, (int)num);
+}
+
+void	pf_spec_pointer(t_printf *restrict pf)
+{
+	intmax_t	num;
+	char		*str;
+
+	pf->flags &= ~PF_FL_SPACE;
+	pf->flags &= ~PF_FL_PLUS;
+	if (pf->flags & PF_FL_MINUS)
+		pf->flags &= ~PF_FL_ZERO;
+	num = va_arg(pf->argptr, intmax_t);
+	str = ft_ultoa_base(num, 16, 'a');
+	ft_strdel(&str);
 }

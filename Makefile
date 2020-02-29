@@ -6,7 +6,7 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/02/27 23:01:24 by aashara-         ###   ########.fr        #
+#    Updated: 2020/02/29 16:47:22 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_parse.c\
 				$(FT_PRINTF_DIR)/pf_spec_handlers.c\
 				$(FT_PRINTF_DIR)/pf_buff_managment.c\
-				$(FT_PRINTF_DIR)/pf_iltoa.c\
+				$(FT_PRINTF_DIR)/pf_handle_int.c\
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 
@@ -112,7 +112,7 @@ DEPS	=		$(OBJS:.o=.d)
 # ------------  FLAGS  ------------------------------------------------------- #
 CC		=		gcc
 RM		=		rm -rf
-CFLGS	=		-Wall -Werror -Wextra
+CFLGS	=		-g -Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
 DFLGS	=		-MMD -MP
 

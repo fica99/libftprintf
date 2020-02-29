@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/28 20:50:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:39:53 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef enum		e_pf_flags
 	PF_FL_MINUS = 4,
 	PF_FL_PLUS = 8,
 	PF_FL_SPACE = 16,
-	PF_FL_FWIDTH = 32,
 }					t_pf_flags;
 
 typedef enum		e_pf_mod_len
@@ -80,12 +79,14 @@ void				pf_spec_c(t_printf *restrict pf);
 void				pf_spec_s(t_printf *restrict pf);
 void				pf_spec_percent(t_printf *restrict pf);
 void				pf_spec_int(t_printf *restrict pf);
+void				pf_spec_pointer(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
 void				pf_add_str(t_printf *restrict pf, char *str);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
-void				pf_add_width(t_printf *restrict pf, const size_t len);
+void				pf_add_width(t_printf *restrict pf, const size_t len,
+															const char symb);
 void				pf_add_str_2_buff(t_printf *restrict pf, const char *str,
 															const size_t len);
 /*

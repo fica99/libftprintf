@@ -6,17 +6,15 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/28 21:10:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:31:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		pf_add_width(t_printf *restrict pf, const size_t len)
+void		pf_add_width(t_printf *restrict pf, const size_t len,
+															const char symb)
 {
-	char	symb;
-
-	symb = (pf->flags & PF_FL_ZERO) ? '0' : ' ';
 	while ((pf->width)-- > len)
 		pf->buff[(pf->buff_len)++] = symb;
 }
@@ -44,11 +42,11 @@ void			pf_add_str(t_printf *restrict pf, char *str)
 	if (pf->flags & PF_FL_MINUS)
 	{
 		pf_add_str_2_buff(pf, str, len);
-		pf_add_width(pf, len);
+		pf_add_width(pf, len, ' ');
 	}
 	else
 	{
-		pf_add_width(pf, len);
+		pf_add_width(pf, len, pf->flags & PF_FL_ZERO ? '0' : ' ');
 		pf_add_str_2_buff(pf, str, len);
 	}
 }

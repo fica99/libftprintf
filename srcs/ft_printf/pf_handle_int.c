@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 22:44:39 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 00:15:03 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:25:32 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ static char		pf_check_sign(t_printf *restrict pf, intmax_t nb, size_t *len, size
 		sign = (' ');
 	else
 		return (0);
+	// убрать костыль!!!
+	if (!nb && !pf->prec)
+	{
+		if (pf->width)
+			--pf->width;
+		return (sign);
+	}
 	++(*len);
 	++(*res_len);
 	return (sign);
@@ -65,14 +72,19 @@ static size_t	pf_pre(t_printf *restrict pf, intmax_t nb, size_t len)
 {
 	char		sign;
 	size_t		res_len;
+	char		is_prec;
 
-	res_len = ((int)len < pf->prec) ? pf->prec : len;
+	if ((int)len < pf->prec || (!pf->prec && !nb))
+		res_len = pf->prec;
+	else
+		res_len = len;
 	sign = pf_check_sign(pf, nb, &len, &res_len);
-	if (sign && (pf->flags & PF_FL_ZERO))
+	is_prec = (pf->flags & PF_FL_ZERO) && pf->prec == -1;
+	if (sign && is_prec)
 		pf->buff[pf->buff_len++] = sign;
 	if (!(pf->flags & PF_FL_MINUS))
-		pf_add_width(pf, res_len);
-	if (sign && !(pf->flags & PF_FL_ZERO))
+		pf_add_width(pf, res_len, is_prec ? '0' : ' ');
+	if (sign && !is_prec)
 		pf->buff[pf->buff_len++] = sign;
 	while (len++ < res_len)
 		pf->buff[pf->buff_len++] = '0';
@@ -90,6 +102,6 @@ void			pf_handle_int(t_printf *restrict pf, intmax_t nb)
 	len = pf_pre(pf, nb, len);
 	pf_add_str_2_buff(pf, str, len);
 	if (pf->flags & PF_FL_MINUS)
-		pf_add_width(pf, len);
+		pf_add_width(pf, len, ' ');
 	ft_strdel(&str);
 }
