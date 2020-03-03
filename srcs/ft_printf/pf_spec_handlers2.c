@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_spec_handlers2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 18:50:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 20:38:33 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:24:13 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	pf_spec_x(t_printf *restrict pf)
 	num = va_arg(pf->argptr, intmax_t);
 	num = pf_convert_unb(pf->mod, num);
 	str = ft_ultoa_base(num, 16, 'a');
-	pf_handle_nb(pf, num, str, 'x');
+	pf_handle_x(pf, num, str);
 }

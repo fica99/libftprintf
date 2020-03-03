@@ -3,20 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   pf_buff_managment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 20:17:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:27:51 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		pf_add_width(t_printf *restrict pf, const size_t len,
-															const char symb)
+char		pf_check_sign(t_printf *restrict pf, intmax_t nb)
 {
-	while ((pf->width)-- > len)
-		pf->buff[(pf->buff_len)++] = symb;
+	char		sign;
+
+	if (nb < 0)
+		sign = ('-');
+	else if (pf->flags & PF_FL_PLUS)
+		sign = ('+');
+	else if (pf->flags & PF_FL_SPACE)
+		sign = (' ');
+	else
+		return (0);
+	// убрать костыль!!!
+	if ((!nb && !pf->prec) || sign)
+		if (pf->width)
+			--pf->width;
+	return (sign);
+}
+
+void		pf_add_symb(t_printf *restrict pf, char c, size_t res_len)
+{
+	size_t	i;
+	size_t	delta;
+
+	i = 0;
+	if ((delta = pf->width - res_len) > pf->width)
+		delta = 0;
+	while (i < delta)
+	{
+		pf->buff[(pf->buff_len)++] = c;
+		i++;
+	}
 }
 
 void		pf_add_str_2_buff(t_printf *restrict pf, const char *str,
@@ -42,11 +69,11 @@ void		pf_add_str(t_printf *restrict pf, char *str)
 	if (pf->flags & PF_FL_MINUS)
 	{
 		pf_add_str_2_buff(pf, str, len);
-		pf_add_width(pf, len, ' ');
+		pf_add_symb(pf, ' ', len);
 	}
 	else
 	{
-		pf_add_width(pf, len, pf->flags & PF_FL_ZERO ? '0' : ' ');
+		pf_add_symb(pf, pf->flags & PF_FL_ZERO ? '0' : ' ', len);
 		pf_add_str_2_buff(pf, str, len);
 	}
 }

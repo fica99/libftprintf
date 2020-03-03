@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 20:33:05 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:28:05 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,27 @@ void				pf_spec_x(t_printf *restrict pf);
 */
 void				pf_add_str(t_printf *restrict pf, char *str);
 void				pf_check_mem(t_printf *restrict pf, const size_t add_len);
-void				pf_add_width(t_printf *restrict pf, const size_t len,
-															const char symb);
+void				pf_add_symb(t_printf *restrict pf, char c, size_t res_len);
 void				pf_add_str_2_buff(t_printf *restrict pf, const char *str,
 															const size_t len);
+char				pf_check_sign(t_printf *restrict pf, intmax_t nb);
 /*
-**					pf_handle_nb.c
+**					pf_convert.c
 */
-void				pf_handle_nb(t_printf *restrict pf, intmax_t nb, char *str, char spec);
 intmax_t			pf_convert_nb(t_pf_mod_len mod, intmax_t num);
 intmax_t			pf_convert_unb(t_pf_mod_len mod, intmax_t num);
+/*
+**					pf_handle_di.c
+*/
+void				pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str);
+/*
+**					pf_handle_p.c
+*/
+void				pf_handle_p(t_printf *restrict pf, intmax_t nb, char *str);
+/*
+**					pf_handle_x.c
+*/
+void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str);
 /*
 **					pf_ltoa.c
 */
