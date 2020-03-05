@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/03/03 21:28:05 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/03/05 21:09:49 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void				pf_spec_p(t_printf *restrict pf);
 /*
 **					pf_spec_handlers2.c
 */
-void				pf_spec_x(t_printf *restrict pf);
+void				pf_spec_big_x(t_printf *restrict pf);
+void				pf_spec_small_x(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
@@ -109,7 +110,7 @@ void				pf_handle_p(t_printf *restrict pf, intmax_t nb, char *str);
 /*
 **					pf_handle_x.c
 */
-void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str);
+void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str, char is_big);
 /*
 **					pf_ltoa.c
 */

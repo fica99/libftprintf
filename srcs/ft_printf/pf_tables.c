@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_tables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 18:55:13 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:48:56 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void				*pf_spec_table(const char c)
 		table['d'] = (void*)&pf_spec_int;
 		table['i'] = (void*)&pf_spec_int;
 		table['p'] = (void*)&pf_spec_p;
-		table['x'] = (void*)&pf_spec_x;
+		table['x'] = (void*)&pf_spec_small_x;
+		table['X'] = (void*)&pf_spec_big_x;
 	//	table['o'] = (void*)&pf_spec_uint;
 	//	table['u'] = (void*)&pf_spec_uint;
-	//	table['X'] = (void*)&pf_spec_uint;
 		// table['f'] = ;
 		// table['e'] = ;
 		// table['g'] = ;

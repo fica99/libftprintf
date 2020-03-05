@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:18:04 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/03/03 20:21:27 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/03/05 21:46:40 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 intmax_t	pf_convert_nb(t_pf_mod_len mod, intmax_t num)
 {
-	if (mod == PF_ML_H)
+	if (mod == PF_ML_INIT)
+		return ((unsigned int) num);
+	else if (mod == PF_ML_H)
 		return ((short)num);
 	else if (mod == PF_ML_HH)
 		return ((char)num);
