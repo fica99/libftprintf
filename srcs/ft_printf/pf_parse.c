@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/27 21:21:07 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/04/09 23:52:08 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	pf_parse_flags(const char *restrict format,
 	pf->flags = PF_FL_INIT;
 	while (format[pf->i])
 	{
-		++(pf->i);
-		tmp = pf_flags_table()[(size_t)format[pf->i]];
+		tmp = pf_flags_table()[(size_t)format[++(pf->i)]];
 		if (!tmp)
 			break ;
 		pf->flags |= tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/03/05 21:09:49 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/04/09 23:15:11 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <limits.h>
+# include <stdint.h>
 # include "libft.h"
 
 # define PRINTF_BUFF_SIZE 10000

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_di.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:16:46 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/03/03 21:28:17 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/04/09 23:50:04 by aashara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 static size_t	pf_pre_di(t_printf *restrict pf, intmax_t nb, size_t len)
 {
