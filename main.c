@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 16:57:34 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/07/29 22:47:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int		main(void)
 {
-	ft_printf("%+5.0d", 0);
+	printf("%d\n", sizeof(unsigned long));
+	ft_printf("%f\n", 4.0);
+	printf("%f\n", 4.0);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/04/09 23:15:11 by aashara          ###   ########.fr       */
+/*   Updated: 2020/07/29 21:26:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define TRUE 1
 # define FALSE 0
 # define ASCII_SIZE 128
+# define LONG_DOUBLE_EXP 16383
+
 typedef enum		e_pf_flags
 {
 	PF_FL_INIT = 0,
@@ -117,4 +119,9 @@ void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str, char is_big);
 */
 char				*ft_ultoa_base(uintmax_t n, int base, char cap);
 char				*ft_iltoa(intmax_t num);
+/*
+**					pf_handle_small_f.c
+*/
+void				pf_spec_small_f(t_printf *restrict pf);
+
 #endif
