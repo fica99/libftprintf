@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/30 23:07:11 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/07/31 01:20:23 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 static char		pf_is_correct_double(char *str, short exp, long mantis)
 {
-	if (exp == SHRT_MAX)
+	if (exp == -LONG_DOUBLE_EXP)
 	{
-		if (!mantis)
+		if (mantis == INVALID_MANTIS)
 			ft_strcpy(str + 1, "inf");
-		else
+		else if (mantis)
 			ft_strcpy(str + 1, "nan");
-		return (FALSE);
-	}
-	if (!exp && !mantis)
-	{
-		ft_strcpy(str + 1, "0");
 		return (FALSE);
 	}
 	return (TRUE);
@@ -82,8 +77,10 @@ static char		*pf_ft_dtoi(long double num)
 	bites = (unsigned char*)&num;
 	sign = (bites[0] & (1 << 7));
 	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
-	exp = (bites[0] << 8 | bites[1]) & SHRT_MAX;
+	exp = ((bites[0] << 8 | bites[1]) & 0) - LONG_DOUBLE_EXP;
 	mantis = pf_get_mantis(bites + 2);
+	printf("exp - %d\n", exp);
+	printf("mantis - %lu\n", mantis);
 	if (!pf_is_correct_double(str, exp, mantis))
 		return (str);
 	// if (!exp)

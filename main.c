@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/30 22:59:33 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/07/31 01:20:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,28 @@ static long double	pf_swap_bytes(long double num)
 
 int		main(void)
 {
-	long double		num = 48.0;
+	long double		num = 0.0;
 	unsigned char	*line = (unsigned char*)&num;
 
 	for (int j = 0; j < 10; ++j) {
 		byte b = line[j];
-		for (int i = 0; i < 8; i++) {
-			printf("%c", (b & 0x80) ? '1' : '0');
-			b <<= 1;
+		for (int i = 7; i >= 0; i--) {
+			printf("%c", (b & 1 << i) ? '1' : '0');
 		}
 	}
 	printf("\n");
+	ft_printf("ft_printf - %f\n", 0.0);
+	printf("printf - %f\n", 0.0);
 	num = pf_swap_bytes(num);
 	for (int j = 0; j < 10; ++j) {
 		byte b = line[j];
-		for (int i = 0; i < 8; i++) {
-			printf("%c", (b & 0x80) ? '1' : '0');
-			b <<= 1;
+		for (int i = 7; i >= 0; i--) {
+			printf("%c", (b & 1 << i) ? '1' : '0');
 		}
 	}
 	printf("\n");
-
 	return 0;
 }
-// 	ft_printf("%f\n", 48.0);
 // 	printf("%f\n", 48.0);
 // 	return (0);
 // }

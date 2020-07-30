@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/29 21:26:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/07/31 01:16:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define FALSE 0
 # define ASCII_SIZE 128
 # define LONG_DOUBLE_EXP 16383
-
+# define INVALID_MANTIS 128
 typedef enum		e_pf_flags
 {
 	PF_FL_INIT = 0,
