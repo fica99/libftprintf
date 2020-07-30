@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/29 22:46:30 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/07/30 23:07:11 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static long double	pf_swap_bytes(long double num)
 
 static unsigned long		pf_get_mantis(unsigned char *bites)
 {
-	unsigned long		res;
+	unsigned long	res;
 	unsigned char	*res_bites;
 	size_t			i;
 
@@ -83,9 +83,7 @@ static char		*pf_ft_dtoi(long double num)
 	sign = (bites[0] & (1 << 7));
 	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
 	exp = (bites[0] << 8 | bites[1]) & SHRT_MAX;
-	mantis = pf_get_mantis(&bites[2]);
-	printf("%d\n", exp);
-	printf("%lu\n", mantis);
+	mantis = pf_get_mantis(bites + 2);
 	if (!pf_is_correct_double(str, exp, mantis))
 		return (str);
 	// if (!exp)
