@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/31 01:16:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/01 15:25:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define FALSE 0
 # define ASCII_SIZE 128
 # define LONG_DOUBLE_EXP 16383
-# define INVALID_MANTIS 128
+# define INF_MANTIS 128
+# define DEL_SIGN 127
 typedef enum		e_pf_flags
 {
 	PF_FL_INIT = 0,
@@ -123,5 +124,9 @@ char				*ft_iltoa(intmax_t num);
 **					pf_handle_small_f.c
 */
 void				pf_spec_small_f(t_printf *restrict pf);
+/*
+**					pf_double_exp_mantis2str.c
+*/
+void				pf_double_exp_mantis_2str(char *str, short exp, unsigned long mantis);
 
 #endif

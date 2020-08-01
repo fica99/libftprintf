@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:42:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/18 20:56:31 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/01 15:55:06 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,7 @@ int				ft_min(int a, int b);
 int				ft_max(int a, int b);
 int				ft_pathcmp(char *p1, char *p2);
 char			*ft_pathjoin(char *s1, char *s2);
+double			ft_pow(double num, short pow);
+
+
 #endif

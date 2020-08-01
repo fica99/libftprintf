@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/07/31 01:20:23 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/01 16:35:17 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char		pf_is_correct_double(char *str, short exp, long mantis)
 {
-	if (exp == -LONG_DOUBLE_EXP)
+	if (exp - 1 == LONG_DOUBLE_EXP)
 	{
-		if (mantis == INVALID_MANTIS)
+		if (mantis == INF_MANTIS)
 			ft_strcpy(str + 1, "inf");
 		else if (mantis)
 			ft_strcpy(str + 1, "nan");
@@ -61,32 +61,27 @@ static unsigned long		pf_get_mantis(unsigned char *bites)
 	return (res);
 }
 
-#include "stdio.h"
-
 static char		*pf_ft_dtoi(long double num)
 {
-	char			sign;
+	uint8_t			sign;
 	short			exp;
 	unsigned long	mantis;
 	unsigned char	*bites;
 	char			*str;
 
-	if (!(str = ft_strnew(1000)))
-		exit(EXIT_FAILURE);
 	num = pf_swap_bytes(num);
 	bites = (unsigned char*)&num;
 	sign = (bites[0] & (1 << 7));
-	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
-	exp = ((bites[0] << 8 | bites[1]) & 0) - LONG_DOUBLE_EXP;
+	exp = bites[0] & DEL_SIGN;
+	exp <<= 8;
+	exp = (exp | bites[1]) - LONG_DOUBLE_EXP;
 	mantis = pf_get_mantis(bites + 2);
-	printf("exp - %d\n", exp);
-	printf("mantis - %lu\n", mantis);
+	if (!(str = ft_strnew(1000)))
+		exit(EXIT_FAILURE);
+	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
 	if (!pf_is_correct_double(str, exp, mantis))
 		return (str);
-	// if (!exp)
-	// 	pf_denormilize_num(exp, mantis);
-	// else
-	// 	pf_normilize_num(exp, mantis);
+	pf_double_exp_mantis_2str(str + 1, exp, mantis);
 	return (str);
 }
 
