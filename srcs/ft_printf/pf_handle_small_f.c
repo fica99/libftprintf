@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/01 16:35:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/04 20:13:11 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static char		pf_is_correct_double(char *str, short exp, long mantis)
 	}
 	return (TRUE);
 }
-
-#include "stdio.h"
 
 static long double	pf_swap_bytes(long double num)
 {
@@ -81,7 +79,7 @@ static char		*pf_ft_dtoi(long double num)
 	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
 	if (!pf_is_correct_double(str, exp, mantis))
 		return (str);
-	pf_double_exp_mantis_2str(str + 1, exp, mantis);
+	pf_exp_mantis_2str(str + 1, exp, mantis);
 	return (str);
 }
 
