@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/04 20:13:11 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/05 19:56:58 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ static char		*pf_ft_dtoi(long double num)
 	exp <<= 8;
 	exp = (exp | bites[1]) - LONG_DOUBLE_EXP;
 	mantis = pf_get_mantis(bites + 2);
-	if (!(str = ft_strnew(1000)))
+	if (!(str = ft_strnew(DOUBLE_MALLOC_LEN))))
 		exit(EXIT_FAILURE);
 	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
 	if (!pf_is_correct_double(str, exp, mantis))
 		return (str);
-	pf_exp_mantis_2str(str + 1, exp, mantis);
+	pf_exp_mantis2str(str + 1, exp, mantis);
 	return (str);
 }
 

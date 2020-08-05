@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/04 20:52:47 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/05 20:02:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <stdint.h>
+# include <math.h>
 # include "libft.h"
 
 # define PRINTF_BUFF_SIZE 10000
@@ -26,6 +27,7 @@
 # define INF_MANTIS 128
 # define DEL_SIGN 127
 # define MANTIS_LEN 64
+# define DOUBLE_MALLOC_LEN 10000
 
 typedef enum		e_pf_flags
 {
@@ -129,6 +131,11 @@ void				pf_spec_small_f(t_printf *restrict pf);
 /*
 **					pf_exp_mantis2str.c
 */
-void				pf_exp_mantis_2str(char *str, short exp, unsigned long mantis);
+void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis);
+/*
+**					pf_long_arith_op.c
+*/
+char				*pf_ft_pow(short pow, short exp);
+char				*pf_pows2str(t_list *list);
 
 #endif
