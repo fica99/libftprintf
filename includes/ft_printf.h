@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/05 20:02:10 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/06 19:41:14 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define INF_MANTIS 128
 # define DEL_SIGN 127
 # define MANTIS_LEN 64
-# define DOUBLE_MALLOC_LEN 10000
+# define LONG_DOUBLE_MALLOC_LEN 400
 
 typedef enum		e_pf_flags
 {
@@ -129,13 +129,16 @@ char				*ft_iltoa(intmax_t num);
 */
 void				pf_spec_small_f(t_printf *restrict pf);
 /*
-**					pf_exp_mantis2str.c
+**					pf_dtoi.c
+*/
+char				*pf_dtoi(long double num);
+/*
+**					pf_dtoi_exp_mantis.c
 */
 void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis);
 /*
-**					pf_long_arith_op.c
+**					pf_dtoi_long_arith.c
 */
 char				*pf_ft_pow(short pow, short exp);
-char				*pf_pows2str(t_list *list);
-
+char				*pf_sum_pows(t_list *head);
 #endif

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_exp_mantis2str.c                                :+:      :+:    :+:   */
+/*   pf_dtoi_exp_mantis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/01 13:55:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/05 20:01:14 by aashara-         ###   ########.fr       */
+/*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
+/*   Updated: 2020/08/06 19:59:26 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			pf_calc_pows2str(char *str, t_list *before_coma,
-															t_list *after_coma)
-{
-	int	len;
-
-	ft_strcat(str, pf_pows2str(before_coma));
-	len = ft_strlen(str);
-	ft_strcat(str + len, ".");
-	ft_strcat(str + len + 1, pf_pows2str(after_coma));
-}
-
-static void			pf_double_get_num(short exp, t_list **before_coma,
+static void			pf_handle_active_bite(short exp, t_list **before_coma,
 														t_list **after_coma)
 {
 	char	*content;
 	t_list	*el;
+	t_list	*tmp;
 
 	content = NULL;
 	if (exp >= 0)
@@ -42,8 +32,49 @@ static void			pf_double_get_num(short exp, t_list **before_coma,
 		// if (!*after_coma)
 			content = pf_ft_pow(5, ft_abs(exp));
 		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
-		ft_lstadd(after_coma, el);
+		tmp = *after_coma;
+		if (!tmp)
+			*after_coma = el;
+		else
+		{
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = el;
+		}
 	}
+}
+
+
+static char			*pf_update_nums2str(char *str, char *num)
+{
+	size_t	i;
+
+	if (!num)
+	{
+		str[0] = '0';
+		return (str + 1);
+	}
+	i = 0;
+	while (num[i])
+	{
+		str[i] = num[i] + 48;
+		++i;
+	}
+	return (str + i);
+}
+
+static void			pf_sum_pows2str(char *str, t_list *before_coma,
+															t_list *after_coma)
+{
+
+	char	*num;
+
+	num = pf_sum_pows(before_coma);
+	str = pf_update_nums2str(str, num);
+	*(str++) = '.';
+	num = pf_sum_pows(after_coma);
+	str = pf_update_nums2str(str, num);
+	*str = '\0';
 }
 
 void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis)
@@ -64,11 +95,11 @@ void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis)
 		while (--j >= 0)
 		{
 			if (num[i] & (1 << j))
-				pf_double_get_num(exp, &before_coma, &after_coma);
+				pf_handle_active_bite(exp, &before_coma, &after_coma);
 			--exp;
 		}
 	}
-	pf_calc_pows2str(str, before_coma, after_coma);
+	pf_sum_pows2str(str, before_coma, after_coma);
 	ft_lstdel(&before_coma, NULL);
 	ft_lstdel(&after_coma, NULL);
 }
