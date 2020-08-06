@@ -6,35 +6,23 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 19:59:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/06 22:10:31 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			pf_handle_active_bite(short exp, t_list **before_coma,
-														t_list **after_coma)
+static void			pf_add_elem2list(char to_start, t_list **head, t_list *el)
 {
-	char	*content;
-	t_list	*el;
 	t_list	*tmp;
 
-	content = NULL;
-	if (exp >= 0)
-	{
-		// if (!*before_coma)
-			content = pf_ft_pow(2, exp);
-		el = ft_lstnew(content, log10(2) * exp + 1);
-		ft_lstadd(before_coma, el);
-	}
+	if (to_start)
+		ft_lstadd(head, el);
 	else
 	{
-		// if (!*after_coma)
-			content = pf_ft_pow(5, ft_abs(exp));
-		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
-		tmp = *after_coma;
+		tmp = *head;
 		if (!tmp)
-			*after_coma = el;
+			*head = el;
 		else
 		{
 			while (tmp->next)
@@ -44,26 +32,59 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 	}
 }
 
-
-static char			*pf_update_nums2str(char *str, char *num)
+static void			pf_handle_active_bite(short exp, t_list **before_coma,
+														t_list **after_coma)
 {
-	size_t	i;
+	char	*content;
+	t_list	*el;
 
-	if (!num)
+	content = NULL;
+	if (exp >= 0)
 	{
-		str[0] = '0';
-		return (str + 1);
+		if (!*before_coma)// add check what is better division or pow
+			content = pf_pow(2, exp);
+		else// find bug with adding element to list
+			content = pf_div_pow((*before_coma)->content,
+							*pf_get_last_exp(), exp, 2);
+		el = ft_lstnew(content, log10(2) * exp + 1);
+		pf_add_elem2list(TRUE, before_coma, el);
 	}
-	i = 0;
-	while (num[i])
+	else
 	{
-		str[i] = num[i] + 48;
-		++i;
+		//handle mul
+		content = pf_pow(5, ft_abs(exp));
+		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
+		pf_add_elem2list(FALSE, after_coma, el);
 	}
-	return (str + i);
+	*pf_get_last_exp() = exp;
 }
 
-static void			pf_sum_pows2str(char *str, t_list *before_coma,
+static char			*pf_sum_pows(t_list *head)
+{
+	t_list	*tmp;
+	int		head_size;
+	int		tmp_size;
+	char	*content;
+	char	*tmp_content;
+
+	if (!head)
+		return (NULL);
+	tmp = head->next;
+	content = head->content;
+	while (tmp)
+	{
+		head_size = head->content_size;
+		tmp_size = tmp->content_size;
+		tmp_content = tmp->content;
+		while (--tmp_size >= 0)
+			content[--head_size] += tmp_content[tmp_size];
+		pf_carry(head->content, head->content_size);
+		tmp = tmp->next;
+	}
+	return (content);
+}
+
+static void			pf_sum_lists2str(char *str, t_list *before_coma,
 															t_list *after_coma)
 {
 
@@ -99,7 +120,7 @@ void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis)
 			--exp;
 		}
 	}
-	pf_sum_pows2str(str, before_coma, after_coma);
+	pf_sum_lists2str(str, before_coma, after_coma);
 	ft_lstdel(&before_coma, NULL);
 	ft_lstdel(&after_coma, NULL);
 }

@@ -6,13 +6,13 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 19:41:41 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/06 22:05:29 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		pf_carry(char *res, int size)
+void			pf_carry(char *res, int size)
 {
 	while (--size)
 	{
@@ -34,7 +34,7 @@ static void		pf_exp(char *res, int size, short pow)
 	pf_carry(res, size);
 }
 
-char			*pf_ft_pow(short pow, short exp)
+char			*pf_pow(short pow, short exp)
 {
 	char	*res;
 	int		size;
@@ -48,27 +48,44 @@ char			*pf_ft_pow(short pow, short exp)
 	return (res);
 }
 
-char			*pf_sum_pows(t_list *head)
+char			*pf_update_nums2str(char *str, char *num)
 {
-	t_list	*tmp;
-	int		head_size;
-	int		tmp_size;
-	char	*content;
-	char	*tmp_content;
+	size_t	i;
 
-	if (!head)
-		return (NULL);
-	tmp = head->next;
-	content = head->content;
-	while (tmp)
+	if (!num)
 	{
-		head_size = head->content_size;
-		tmp_size = tmp->content_size;
-		tmp_content = tmp->content;
-		while (--tmp_size >= 0)
-			content[--head_size] += tmp_content[tmp_size];
-		pf_carry(head->content, head->content_size);
-		tmp = tmp->next;
+		str[0] = '0';
+		return (str + 1);
 	}
-	return (content);
+	i = 0;
+	while (num[i])
+	{
+		str[i] = num[i] + 48;
+		++i;
+	}
+	return (str + i);
+}
+
+char			*pf_div_pow(char *num, short prev_exp, short exp, short pow)
+{
+	size_t	i;
+	size_t	j;
+	int		tmp;
+	char	*res;
+	short	div;
+
+	i = 0;
+	tmp = 0;
+	j = 0;
+	div = (short)ft_pow(pow, ft_abs(prev_exp - exp));
+	if (!(res = ft_strnew(log10(pow) * exp + 1)))
+		exit(EXIT_FAILURE);
+	while (num[i])
+	{
+		while (tmp < div)
+			tmp = tmp * 10 + num[i++];
+		res[j++] = tmp / div;
+		tmp = tmp % div;
+	}
+	return (res);
 }

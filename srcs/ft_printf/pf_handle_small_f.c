@@ -6,11 +6,18 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 19:40:54 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/06 20:55:31 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+short			*pf_get_last_exp(void)
+{
+	static short	exp;
+
+	return (&exp);
+}
 
 void			pf_spec_small_f(t_printf *restrict pf)
 {
