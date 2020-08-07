@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 21:38:59 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 13:28:07 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ char				*ft_iltoa(intmax_t num);
 /*
 **					pf_handle_small_f.c
 */
-short				*pf_get_last_exp(void);
 void				pf_spec_small_f(t_printf *restrict pf);
 /*
 **					pf_dtoi.c
@@ -144,4 +143,9 @@ void				pf_carry(char *res, int size);
 char				*pf_pow(short pow, short exp);
 char				*pf_update_nums2str(char *str, char *num);
 char				*pf_div_pow(char *num, short prev_exp, short exp, short pow);
+/*
+**					pf_dtoi_list.c
+*/
+void				pf_add_elem2list(char to_start, t_list **head, t_list *el);
+t_list				*pf_get_last(t_list *head);
 #endif

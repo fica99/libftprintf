@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 22:05:29 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 14:17:25 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,25 @@ char			*pf_update_nums2str(char *str, char *num)
 
 char			*pf_div_pow(char *num, short prev_exp, short exp, short pow)
 {
-	size_t	i;
+	size_t	len;
 	size_t	j;
 	int		tmp;
 	char	*res;
 	short	div;
 
-	i = 0;
-	tmp = 0;
-	j = 0;
 	div = (short)ft_pow(pow, ft_abs(prev_exp - exp));
 	if (!(res = ft_strnew(log10(pow) * exp + 1)))
 		exit(EXIT_FAILURE);
-	while (num[i])
+	tmp = *num;
+	len = log10(pow) * prev_exp + 1;
+	while (tmp < div && len--)
+		tmp = tmp * 10 + *(++num);
+	j = 0;
+	while (len--)
 	{
-		while (tmp < div)
-			tmp = tmp * 10 + num[i++];
 		res[j++] = tmp / div;
 		tmp = tmp % div;
+		tmp = tmp * 10 + *(++num);
 	}
 	return (res);
 }

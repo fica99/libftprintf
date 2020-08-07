@@ -6,49 +6,40 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/06 22:10:31 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 14:30:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			pf_add_elem2list(char to_start, t_list **head, t_list *el)
+static void			pf_handle_before_coma(short exp, t_list **before_coma)
 {
-	t_list	*tmp;
+	static short	prev_exp;
+	char			*content;
+	t_list			*el;
+	t_list			*last;
 
-	if (to_start)
-		ft_lstadd(head, el);
+	last = NULL;
+	if (!*before_coma || (prev_exp - exp) > exp)
+		content = pf_pow(2, exp);
 	else
 	{
-		tmp = *head;
-		if (!tmp)
-			*head = el;
-		else
-		{
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = el;
-		}
+		last = pf_get_last(*before_coma);
+		content = pf_div_pow(last->content, prev_exp, exp, 2);
 	}
+	el = ft_lstnew(content, log10(2) * exp + 1);
+	pf_add_elem2list(FALSE, last ?  &last : before_coma, el);
+	prev_exp = exp;
 }
 
 static void			pf_handle_active_bite(short exp, t_list **before_coma,
 														t_list **after_coma)
 {
-	char	*content;
-	t_list	*el;
+	char			*content;
+	t_list			*el;
 
-	content = NULL;
 	if (exp >= 0)
-	{
-		if (!*before_coma)// add check what is better division or pow
-			content = pf_pow(2, exp);
-		else// find bug with adding element to list
-			content = pf_div_pow((*before_coma)->content,
-							*pf_get_last_exp(), exp, 2);
-		el = ft_lstnew(content, log10(2) * exp + 1);
-		pf_add_elem2list(TRUE, before_coma, el);
-	}
+		pf_handle_before_coma(exp, before_coma);
 	else
 	{
 		//handle mul
@@ -56,7 +47,6 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
 		pf_add_elem2list(FALSE, after_coma, el);
 	}
-	*pf_get_last_exp() = exp;
 }
 
 static char			*pf_sum_pows(t_list *head)
