@@ -6,14 +6,17 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 14:17:25 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 15:15:39 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			pf_carry(char *res, int size)
+char			pf_carry(char *res, int size)
 {
+	char	to_add;
+
+	to_add = 0;
 	while (--size)
 	{
 		if (res[size] > 9)
@@ -22,6 +25,12 @@ void			pf_carry(char *res, int size)
 			res[size] %= 10;
 		}
 	}
+	if (res[0] > 9)
+	{
+		to_add += res[0] / 10;
+		res[0] %= 10;
+	}
+	return (to_add);
 }
 
 static void		pf_exp(char *res, int size, short pow)
@@ -48,17 +57,17 @@ char			*pf_pow(short pow, short exp)
 	return (res);
 }
 
-char			*pf_update_nums2str(char *str, char *num)
+char			*pf_update_nums2str(char *str, char *num, size_t num_len)
 {
 	size_t	i;
 
-	if (!num)
+	if (!num || !num_len)
 	{
 		str[0] = '0';
 		return (str + 1);
 	}
 	i = 0;
-	while (num[i])
+	while (i < num_len)
 	{
 		str[i] = num[i] + 48;
 		++i;
