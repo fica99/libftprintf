@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 15:05:29 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:30:17 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,13 +139,14 @@ void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis);
 /*
 **					pf_dtoi_long_arith.c
 */
-char				pf_carry(char *res, int size);
+void				pf_carry(char *res, int size);
 char				*pf_pow(short pow, short exp);
-char				*pf_update_nums2str(char *str, char *num, size_t num_len);
 char				*pf_div_pow(char *num, short prev_exp, short exp, short pow);
 /*
 **					pf_dtoi_list.c
 */
 void				pf_add_elem2list(char to_start, t_list **head, t_list *el);
 t_list				*pf_get_last(t_list *head);
+void				pf_first_dig_overflow(t_list *el);
+char				*pf_update_nums2str(char *str, t_list *el);
 #endif

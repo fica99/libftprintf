@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 15:15:28 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:32:11 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 	}
 }
 
-static char			*pf_sum_pows(t_list *head)
+static void			pf_sum_pows(t_list *head)
 {
 	t_list	*tmp;
 	int		head_size;
@@ -58,7 +58,7 @@ static char			*pf_sum_pows(t_list *head)
 	char	*tmp_content;
 
 	if (!head)
-		return (NULL);
+		return ;
 	tmp = head->next;
 	content = head->content;
 	while (tmp)
@@ -68,31 +68,23 @@ static char			*pf_sum_pows(t_list *head)
 		tmp_content = tmp->content;
 		while (--tmp_size >= 0)
 			content[--head_size] += tmp_content[tmp_size];
-		if ((tmp_size = pf_carry(head->content, head->content_size)))
-		{
-			content = ft_strnew(head->content_size + 1);
-			ft_memcpy(content + 1, head->content, head->content_size);
-			content[0] = tmp_size;
-			ft_memdel(&head->content);
-			head->content = content;
-			++head->content_size;
-		}
+		pf_carry(head->content, head->content_size);
 		tmp = tmp->next;
 	}
-	return (content);
 }
+
+
 
 static void			pf_sum_lists2str(char *str, t_list *before_coma,
 															t_list *after_coma)
 {
-
-	char	*num;
-
-	num = pf_sum_pows(before_coma);
-	str = pf_update_nums2str(str, num, num ? before_coma->content_size : 0);
+	pf_sum_pows(before_coma);
+	pf_first_dig_overflow(before_coma);
+	str = pf_update_nums2str(str, before_coma);
 	*(str++) = '.';
-	num = pf_sum_pows(after_coma);
-	str = pf_update_nums2str(str, num, num ? after_coma->content_size : 0);
+	pf_sum_pows(after_coma);
+	pf_first_dig_overflow(after_coma);
+	str = pf_update_nums2str(str, after_coma);
 	*str = '\0';
 }
 
