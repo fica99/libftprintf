@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:45:57 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 18:33:01 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,44 +43,49 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 	else
 	{
 		//handle mul
-		content = pf_pow(5, ft_abs(exp));
+		content = pf_pow(5, ft_abs(exp));// обработать правильно возведение в степень
 		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
-		pf_add_elem2list(FALSE, after_coma, el);
+		pf_add_elem2list(TRUE, after_coma, el);
 	}
 }
 
-static void			pf_sum_pows(t_list *head)
+static void			pf_sum_pows(t_list *head, char is_after_coma)
 {
-	t_list	*tmp;
-	int		head_size;
-	int		tmp_size;
-	char	*content;
-	char	*tmp_content;
+	t_list			*tmp;
+	int				head_size;
+	int				tmp_size;
+	unsigned char	*content;
+	unsigned char	*tmp_content;
 
 	if (!head)
 		return ;
-	tmp = head->next;
+	tmp = head;
 	content = head->content;
-	while (tmp)
+	while ((tmp = tmp->next))
 	{
 		head_size = head->content_size;
 		tmp_size = tmp->content_size;
 		tmp_content = tmp->content;
 		while (--tmp_size >= 0)
-			content[--head_size] += tmp_content[tmp_size];
+		{
+			if (is_after_coma)
+				content[tmp->content_size - (tmp_size + 1)] +=
+					tmp_content[tmp->content_size - (tmp_size + 1)];
+			else
+				content[--head_size] += tmp_content[tmp_size];
+		}
 		pf_carry(head->content, head->content_size);
-		tmp = tmp->next;
 	}
 }
 
 static void			pf_sum_lists2str(char *str, t_list *before_coma,
 															t_list *after_coma)
 {
-	pf_sum_pows(before_coma);
-	pf_first_dig_overflow(before_coma);
+	pf_sum_pows(before_coma, FALSE);
+	pf_first_dig_overflow(before_coma);//обработать переполнение
 	str = pf_update_nums2str(str, before_coma);
 	*(str++) = '.';
-	pf_sum_pows(after_coma);
+	pf_sum_pows(after_coma, TRUE);
 	pf_first_dig_overflow(after_coma);
 	str = pf_update_nums2str(str, after_coma);
 	*str = '\0';

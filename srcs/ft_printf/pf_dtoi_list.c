@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 13:22:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:52:52 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 18:21:18 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void		pf_add_elem2list(char to_start, t_list **head, t_list *el)
 
 void		pf_first_dig_overflow(t_list *el)
 {
-	char	*num;
-	char	to_add;
+	unsigned char	*num;
+	unsigned char	to_add;
 
 	if (!el)
 		return ;
@@ -53,7 +53,7 @@ void		pf_first_dig_overflow(t_list *el)
 	{
 		to_add += num[0] / 10;
 		num[0] %= 10;
-		if (!(num = ft_strnew(el->content_size + 1)))
+		if (!(num = ft_memalloc(el->content_size + 1)))
 			exit(EXIT_FAILURE);
 		ft_memcpy(num + 1, el->content, el->content_size);
 		num[0] = to_add;
