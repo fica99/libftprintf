@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:42:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/05 18:21:02 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:41:47 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				ft_isspace(int c);
-int 			ft_isupper(char c);
+int				ft_isupper(char c);
 void			ft_swap(int *start, int *end);
 int				ft_min(int a, int b);
 int				ft_max(int a, int b);

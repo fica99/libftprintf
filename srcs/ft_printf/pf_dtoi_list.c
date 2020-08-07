@@ -6,13 +6,13 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 13:22:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:36:08 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:52:52 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_list	*pf_get_last(t_list *head)
+t_list		*pf_get_last(t_list *head)
 {
 	t_list	*tmp;
 
@@ -24,8 +24,7 @@ t_list	*pf_get_last(t_list *head)
 	return (tmp);
 }
 
-
-void	pf_add_elem2list(char to_start, t_list **head, t_list *el)
+void		pf_add_elem2list(char to_start, t_list **head, t_list *el)
 {
 	t_list	*last;
 
@@ -41,7 +40,7 @@ void	pf_add_elem2list(char to_start, t_list **head, t_list *el)
 	}
 }
 
-void	pf_first_dig_overflow(t_list *el)
+void		pf_first_dig_overflow(t_list *el)
 {
 	char	*num;
 	char	to_add;
@@ -64,7 +63,7 @@ void	pf_first_dig_overflow(t_list *el)
 	}
 }
 
-char			*pf_update_nums2str(char *str, t_list *el)
+char		*pf_update_nums2str(char *str, t_list *el)
 {
 	size_t	i;
 	char	*num;

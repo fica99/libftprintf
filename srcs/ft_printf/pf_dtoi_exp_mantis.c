@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:32:11 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:45:57 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void			pf_handle_before_coma(short exp, t_list **before_coma)
 		content = pf_div_pow(last->content, prev_exp, exp, 2);
 	}
 	el = ft_lstnew(content, log10(2) * exp + 1);
-	pf_add_elem2list(FALSE, last ?  &last : before_coma, el);
+	pf_add_elem2list(FALSE, last ? &last : before_coma, el);
 	prev_exp = exp;
 }
 
@@ -73,8 +73,6 @@ static void			pf_sum_pows(t_list *head)
 	}
 }
 
-
-
 static void			pf_sum_lists2str(char *str, t_list *before_coma,
 															t_list *after_coma)
 {
@@ -88,7 +86,8 @@ static void			pf_sum_lists2str(char *str, t_list *before_coma,
 	*str = '\0';
 }
 
-void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis)
+void				pf_exp_mantis2str(char *str, short exp,
+												unsigned long mantis)
 {
 	int8_t			i;
 	int8_t			j;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_x.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 21:11:00 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/03/05 21:46:50 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/07 16:45:14 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void		pf_check_prefix(t_printf *restrict pf, intmax_t nb)
 			pf->width -= 2;
 }
 
-static size_t	pf_pre_x(t_printf *restrict pf, intmax_t nb, size_t len, char is_big)
+static size_t	pf_pre_x(t_printf *restrict pf, intmax_t nb, size_t len,
+																char is_big)
 {
 	char		sign;
 	size_t		res_len;
@@ -59,7 +60,8 @@ static size_t	pf_pre_x(t_printf *restrict pf, intmax_t nb, size_t len, char is_b
 	return (res_len);
 }
 
-void			pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str, char is_big)
+void			pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str,
+															char is_big)
 {
 	size_t	len;
 

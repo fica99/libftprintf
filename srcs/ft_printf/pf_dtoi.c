@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:17:32 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:33:31 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:51:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static long double		pf_swap_bytes(long double num)
 	bites = (unsigned char*)&num;
 	res_bites = (unsigned char*)&res;
 	i = 0;
-	while (i < 10) {
+	while (i < 10)
+	{
 		res_bites[i] = bites[9 - i];
 		++i;
 	}

@@ -6,12 +6,12 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:30:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/07 16:41:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF
-# define FT_PRINTF
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <limits.h>
@@ -118,7 +118,8 @@ void				pf_handle_p(t_printf *restrict pf, intmax_t nb, char *str);
 /*
 **					pf_handle_x.c
 */
-void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str, char is_big);
+void				pf_handle_x(t_printf *restrict pf, intmax_t nb,
+												char *str, char is_big);
 /*
 **					pf_ltoa.c
 */
@@ -135,13 +136,15 @@ char				*pf_dtoi(long double num);
 /*
 **					pf_dtoi_exp_mantis.c
 */
-void				pf_exp_mantis2str(char *str, short exp, unsigned long mantis);
+void				pf_exp_mantis2str(char *str, short exp,
+											unsigned long mantis);
 /*
 **					pf_dtoi_long_arith.c
 */
 void				pf_carry(char *res, int size);
 char				*pf_pow(short pow, short exp);
-char				*pf_div_pow(char *num, short prev_exp, short exp, short pow);
+char				*pf_div_pow(char *num, short prev_exp, short exp,
+															short pow);
 /*
 **					pf_dtoi_list.c
 */
