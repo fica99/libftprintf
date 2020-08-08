@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:41:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 14:50:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define INF_MANTIS 128
 # define DEL_SIGN 127
 # define MANTIS_LEN 64
-# define LONG_DOUBLE_MALLOC_LEN 1000
+# define LONG_DOUBLE_MALLOC_LEN 16500
 
 typedef enum		e_pf_flags
 {

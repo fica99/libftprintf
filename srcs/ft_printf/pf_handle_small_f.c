@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:33:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 14:43:12 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			pf_spec_small_f(t_printf *restrict pf)
 
 	// if (pf->prec == -1)
 	// 	pf->prec = 6;
-	if (pf->flags & PF_ML_L)
+	if (pf->mod & PF_ML_BL)
 		num = va_arg(pf->argptr, long double);
 	else
 		num = va_arg(pf->argptr, double);

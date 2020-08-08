@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/08 13:11:57 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 14:33:08 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 		pf_handle_before_coma(exp, before_coma);
 	else
 	{
-		//handle mul
 		content = pf_pow(2, exp);
 		exp = ft_abs(exp);
-		el = ft_lstnew(content, log10(10.0 / 2) * exp + 1 + (int)(log10(2) * exp));
+		el = ft_lstnew(content, log10(5) * exp + 1 + (int)(log10(2) * exp));
 		pf_add_elem2list(TRUE, after_coma, el);
 	}
 }
@@ -83,7 +82,7 @@ static void			pf_sum_lists2str(char *str, t_list *before_coma,
 															t_list *after_coma)
 {
 	pf_sum_pows(before_coma, FALSE);
-	pf_first_dig_overflow(before_coma);//обработать переполнение
+	pf_first_dig_overflow(before_coma);
 	str = pf_update_nums2str(str, before_coma);
 	*(str++) = '.';
 	pf_sum_pows(after_coma, TRUE);
