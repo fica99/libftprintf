@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 18:33:01 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 13:11:57 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ static void			pf_handle_active_bite(short exp, t_list **before_coma,
 	else
 	{
 		//handle mul
-		content = pf_pow(5, ft_abs(exp));// обработать правильно возведение в степень
-		el = ft_lstnew(content, log10(5) * ft_abs(exp) + 1);
+		content = pf_pow(2, exp);
+		exp = ft_abs(exp);
+		el = ft_lstnew(content, log10(10.0 / 2) * exp + 1 + (int)(log10(2) * exp));
 		pf_add_elem2list(TRUE, after_coma, el);
 	}
 }

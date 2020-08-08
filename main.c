@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 18:27:04 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 13:14:42 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static long double	pf_swap_bytes(long double num)
 
 int		main(void)
 {
-	long double		num = 0.3125;
+	long double		num = 12345.12345678;
 	unsigned char	*line = (unsigned char*)&num;
 
 	num = pf_swap_bytes(num);
@@ -43,7 +43,7 @@ int		main(void)
 		}
 	}
 	printf("\n");
-	ft_printf("ft_printf - %f\n", 0.3125);
-	printf("printf - %f\n", 0.3125);
+	ft_printf("ft_printf - %f\n", 12345.12345678);
+	printf("printf - %.100f\n", 12345.12345678);
 	return 0;
 }

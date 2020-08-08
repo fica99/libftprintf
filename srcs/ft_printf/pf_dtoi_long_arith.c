@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 18:25:33 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/08 13:10:27 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ char			*pf_pow(short pow, short exp)
 {
 	char			*res;
 	int				size;
+	double			new_pow;
 
-	size = log10(pow) * exp + 1;
-	if (!(res = ft_memalloc(size)))
+	if (exp < 0)
+	{
+		exp = ft_abs(exp);
+		new_pow = 10.0 / pow;
+		size = log10(new_pow) * exp + 1 + (int)(log10(pow) * exp);
+		pow = new_pow;
+	}
+	else
+		size = log10(pow) * ft_abs(exp) + 1;
+	if (!(res = ft_strnew(size)))
 		exit(EXIT_FAILURE);
 	res[size - 1] = 1;
 	while (exp--)
