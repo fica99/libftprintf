@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 15:02:53 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 21:55:10 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,12 @@ void				pf_spec_small_f(t_printf *restrict pf);
 /*
 **					pf_dtoi.c
 */
-char				*pf_dtoi(long double num);
+char				*pf_dtoi(long double num, int prec);
 /*
 **					pf_dtoi_exp_mantis.c
 */
 void				pf_exp_mantis2str(char *str, short exp,
-											unsigned long mantis);
+											unsigned long mantis, int prec);
 /*
 **					pf_dtoi_long_arith.c
 */

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 14:02:59 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 21:54:44 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void			pf_sum_lists2str(char *str, t_list *before_coma,
 }
 
 void				pf_exp_mantis2str(char *str, short exp,
-												unsigned long mantis)
+											unsigned long mantis, int prec)
 {
 	int8_t			i;
 	int8_t			j;
