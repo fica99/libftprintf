@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/08 14:53:54 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 16:52:40 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(void)
 		}
 	}
 	printf("\n");
-	ft_printf("ft_printf - %.16500Lf\n", __LDBL_MIN__);
-	printf("printf - %.16500Lf\n", __LDBL_MIN__);
+	ft_printf("ft_printf -%-+6f\n", -1.0/0.0);
+	printf("printf -%-+6f\n", -1.0/0.0);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/08 14:33:08 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 14:02:59 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ static void			pf_handle_before_coma(short exp, t_list **before_coma)
 	static short	prev_exp;
 	char			*content;
 	t_list			*el;
-	t_list			*last;
+	static t_list	*last;
 
-	last = NULL;
+	if (!*before_coma)
+		last = NULL;
 	if (!*before_coma || (prev_exp - exp) > exp)
 		content = pf_pow(2, exp);
 	else
-	{
-		last = pf_get_last(*before_coma);
 		content = pf_div_pow(last->content, prev_exp, exp, 2);
-	}
 	el = ft_lstnew(content, log10(2) * exp + 1);
 	pf_add_elem2list(FALSE, last ? &last : before_coma, el);
+	last = el;
 	prev_exp = exp;
 }
 

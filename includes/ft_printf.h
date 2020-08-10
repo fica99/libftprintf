@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/08 14:50:10 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 15:02:53 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include "libft.h"
 
-# define PRINTF_BUFF_SIZE 10000
+# define PRINTF_BUFF_SIZE 20000
 # define TRUE 1
 # define FALSE 0
 # define ASCII_SIZE 128
