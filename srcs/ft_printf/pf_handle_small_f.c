@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 16:51:09 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/10 20:24:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,45 @@ static void		pf_double_invalid_str_nan(t_printf *pf, char *str_num)
 	pf_add_str_2_buff(pf, ++str_num, 3);
 }
 
-static void		pf_double_invalid_str_inf(t_printf *pf, char *str_num)
+static void	pf_double_handle_flags(t_printf *pf, char *str_num, size_t len)
 {
-	size_t	len;
-
-	pf_check_mem(pf, 4 + pf->width);
-	len = 3;
-	if (str_num[0] == '-')
+	if (str_num[0] == '-' || (str_num[0] == '+' && (pf->flags & PF_FL_PLUS)))
 		++len;
 	else
 	{
-		if (pf->flags & PF_FL_PLUS)
-			++len;
-		else
-			++str_num;
+		if ((pf->flags & PF_FL_SPACE) && str_num[0] == '+')
+		{
+			pf_add_str_2_buff(pf, " ", 1);
+			if (pf->width)
+				--pf->width;
+		}
+		++str_num;
 	}
-	if (pf->flags & PF_FL_SPACE && str_num[0] == '+')
-	{
-		pf_add_str_2_buff(pf, " ", 1);
-		if (pf->width)
-			--pf->width;
-	}
+	pf_check_mem(pf, len + pf->width);
 	if (!(pf->flags & PF_FL_MINUS))
 		pf_add_symb(pf, ' ', len);
 	pf_add_str_2_buff(pf, str_num, len);
 }
 
-void			pf_spec_small_f(t_printf *restrict pf)
+static void	pf_double_putnum(t_printf *pf, char *str_num)
+{
+	size_t	i;
+	size_t	coma;
+
+	i = 0;
+	while (str_num[i] != '.')
+	{
+		pf_check_mem(pf, 1);
+		pf_add_str_2_buff(pf, str_num + i, 1);
+		++i;
+	}
+	coma = i;
+}
+
+void		pf_spec_small_f(t_printf *restrict pf)
 {
 	long double	num;
 	char		*str_num;
-	// size_t		nb_len;
 
 	if (pf->prec == -1)
 		pf->prec = 6;
@@ -63,10 +71,8 @@ void			pf_spec_small_f(t_printf *restrict pf)
 	str_num = pf_dtoi(num);
 	if (!ft_isdigit((str_num[1])))
 		str_num[1] == 'n' ? pf_double_invalid_str_nan(pf, str_num) :
-							pf_double_invalid_str_inf(pf, str_num);
+							pf_double_handle_flags(pf, str_num, 3);
 	else
-	{
-
-	}
+		pf_double_putnum(pf, str_num);
 	ft_strdel(&str_num);
 }
