@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 19:12:50 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 20:08:31 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,9 @@ static void			pf_sum_lists2str(char *str, t_list *before_coma,
 	pf_sum_pows(after_coma, TRUE);
 	pf_dig_overflow((char**)&before_coma->content, 0,
 									&before_coma->content_size, FALSE);
-	str = pf_update_nums2str(str, before_coma->content,
-											before_coma->content_size);
+	str = pf_update_nums2str(str, before_coma);
 	*(str++) = '.';
-	str = pf_update_nums2str(str, after_coma->content,
-											after_coma->content_size);
+	str = pf_update_nums2str(str, after_coma);
 	*str = '\0';
 }
 

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 13:22:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 18:02:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 20:08:52 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,21 @@ void		pf_dig_overflow(char **content, size_t i, size_t *size, char is_str)
 	}
 }
 
-char		*pf_update_nums2str(char *str, char *content, size_t size)
+char		*pf_update_nums2str(char *str, t_list *el)
 {
 	size_t	i;
+	char	*cont;
 
-	if (!content)
+	if (!el)
 	{
 		str[0] = '0';
 		return (str + 1);
 	}
 	i = 0;
-	while (i < size)
+	cont = el->content;
+	while (i < el->content_size)
 	{
-		str[i] = content[i] + 48;
+		str[i] = cont[i] + 48;
 		++i;
 	}
 	return (str + i);

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 19:12:24 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 20:07:46 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void				pf_add_elem2list(char to_start, t_list **head, t_list *el);
 t_list				*pf_get_last(t_list *head);
 void				pf_dig_overflow(char **content, size_t i, size_t *size,
 																char is_str);
-char				*pf_update_nums2str(char *str, char *content, size_t size);
+char				*pf_update_nums2str(char *str, t_list *el);
 /*
 **					pf_dtoa_round.c
 */

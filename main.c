@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 18:18:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 20:09:57 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		main(void)
 	while (i < 200)
 	{
 		tmp = randfrom(-1000000.0, 1000000.0);
-		ft_printf("%70.50Lf\n", tmp);
-		printf("%70.50Lf\n\n", tmp);
+		ft_printf("%f\n", 3.9999999);
+		printf("%f\n\n", 3.9999999);
 		++i;
 	}
 	return 0;
