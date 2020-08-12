@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 19:08:17 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 23:53:19 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ void			pf_carry(char *res, int size, char is_str)
 		nb = 48;
 	while (--size)
 	{
+		if (is_str && res[size] == '.')
+			continue ;
 		if (res[size] - nb > 9)
 		{
-			res[size - 1] += (res[size] - nb) / 10;
+			if (res[size - 1] == '.')
+				res[size - 2] += (res[size] - nb) / 10;
+			else
+				res[size - 1] += (res[size] - nb) / 10;
 			res[size] = (res[size] - nb) % 10 + nb;
 		}
 	}

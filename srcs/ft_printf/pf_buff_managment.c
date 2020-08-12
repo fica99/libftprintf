@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 19:20:02 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/13 01:33:49 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char		pf_check_sign(t_printf *restrict pf, intmax_t nb)
 	else
 		return (0);
 	// убрать костыль!!!
-	if ((!nb && !pf->prec) || sign)
-		if (pf->width)
-			--pf->width;
+	// if ((!nb && !pf->prec) || sign)
+	// 	if (pf->width)
+	// 		--pf->width;
 	return (sign);
 }
 
