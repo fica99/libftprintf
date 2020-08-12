@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_dtoi.c                                          :+:      :+:    :+:   */
+/*   pf_dtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:17:32 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 21:09:31 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:10:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,25 @@ static char				pf_is_correct_double(char *str, short exp, long mantis)
 	return (TRUE);
 }
 
-char					*pf_dtoi(long double num, int prec)
+size_t				pf_dtoa(char **str, long double nb, int prec)
 {
 	uint8_t			sign;
 	short			exp;
 	unsigned long	mantis;
 	unsigned char	*bites;
-	char			*str;
+	char			*num;
 
-	num = pf_swap_bytes(num);
-	bites = (unsigned char*)&num;
+	nb = pf_swap_bytes(nb);
+	bites = (unsigned char*)&nb;
 	sign = (bites[0] & (1 << 7));
 	exp = pf_get_exp(bites);
 	mantis = pf_get_mantis(bites + 2);
-	if (!(str = (char*)malloc(LONG_DOUBLE_MALLOC_LEN)))
+	if (!(num = (char*)malloc(LONG_DOUBLE_MALLOC_LEN)))
 		exit(EXIT_FAILURE);
-	sign ? ft_strcpy(str, "-") : ft_strcpy(str, "+");
-	if (!pf_is_correct_double(str + 1, exp, mantis))
-		return (str);
-	pf_exp_mantis2str(str + 1, exp, mantis, prec);
-	return (str);
+	*str = num;
+	sign ? ft_strcpy(num, "-") : ft_strcpy(num, "+");
+	if (!pf_is_correct_double(num + 1, exp, mantis))
+		return (3);
+	pf_exp_mantis2str(num + 1, exp, mantis);
+	return (pf_dtoa_round(str, (size_t)prec));
 }

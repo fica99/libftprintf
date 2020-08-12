@@ -6,44 +6,32 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 21:49:37 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:54:52 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static long double	pf_swap_bytes(long double num)
+long double randfrom(long double min, long double max)
 {
-	unsigned char	*bites;
-	unsigned char	*res_bites;
-	long double		res;
-	size_t			i;
-
-	bites = (unsigned char*)&num;
-	res_bites = (unsigned char*)&res;
-	i = 0;
-	while (i < 10) {
-		res_bites[i] = bites[9 - i];
-		++i;
-	}
-	return (res);
+	long double range = (max - min);
+	long double div = RAND_MAX / range;
+	return min + (rand() / div);
 }
 
 int		main(void)
 {
-	long double		num = __LDBL_MIN__;
-	unsigned char	*line = (unsigned char*)&num;
+	long double	tmp;
+	int			i;
 
-	num = pf_swap_bytes(num);
-	for (int j = 0; j < 10; ++j) {
-		char b = line[j];
-		for (int i = 7; i >= 0; i--) {
-			printf("%c", (b & 1 << i) ? '1' : '0');
-		}
+	i = 0;
+	while (i < 2)
+	{
+		tmp = randfrom(10.0, 100.0);
+		ft_printf("%Lf\n", tmp);
+		printf("%Lf\n\n", tmp);
+		++i;
 	}
-	printf("\n");
-	ft_printf("%.0f\n", 0.51);
-	printf("%.0f\n", 0.51);
 	return 0;
 }

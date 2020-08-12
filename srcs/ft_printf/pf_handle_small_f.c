@@ -6,13 +6,13 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/10 21:06:40 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 14:48:25 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		pf_double_invalid_str_nan(t_printf *pf, char *str_num)
+static void	pf_double_invalid_str_nan(t_printf *pf, char *str_num)
 {
 	pf_check_mem(pf, 3 + pf->width);
 	if (!(pf->flags & PF_FL_MINUS))
@@ -54,16 +54,11 @@ void		pf_spec_small_f(t_printf *restrict pf)
 		num = va_arg(pf->argptr, long double);
 	else
 		num = va_arg(pf->argptr, double);
-	str_num = pf_dtoi(num, pf->prec);
+	str_num = NULL;
+	len = pf_dtoa(&str_num, num, pf->prec);
 	if (str_num[1] == 'n')
 		pf_double_invalid_str_nan(pf, str_num);
 	else
-	{
-		if (str_num[1] == 'i')
-			len = 3;
-		else
-			len = ft_strlen(str_num);
 		pf_double_handle_flags(pf, str_num, len);
-	}
 	ft_strdel(&str_num);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_dtoi_list.c                                     :+:      :+:    :+:   */
+/*   pf_dtoa_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 13:22:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 18:21:18 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:25:41 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,44 +40,42 @@ void		pf_add_elem2list(char to_start, t_list **head, t_list *el)
 	}
 }
 
-void		pf_first_dig_overflow(t_list *el)
+void		pf_dig_overflow(char **content, size_t i, size_t *size)
 {
-	unsigned char	*num;
-	unsigned char	to_add;
+	char	*num;
+	char	to_add;
 
-	if (!el)
+	if (!content || !*content)
 		return ;
-	num = el->content;
+	num = *content;
 	to_add = 0;
-	if (num[0] > 9)
+	if (num[i] > 9)
 	{
-		to_add += num[0] / 10;
-		num[0] %= 10;
-		if (!(num = ft_memalloc(el->content_size + 1)))
+		to_add += num[i] / 10;
+		num[i] %= 10;
+		if (!(num = ft_memalloc(++(*size))))
 			exit(EXIT_FAILURE);
-		ft_memcpy(num + 1, el->content, el->content_size);
-		num[0] = to_add;
-		ft_memdel(&el->content);
-		el->content = num;
-		++el->content_size;
+		ft_memcpy(num, *content, i);
+		num[i] = to_add;
+		ft_memcpy(num + i + 1, *content + i, *size - 1 - i);
+		ft_strdel(content);
+		*content = num;
 	}
 }
 
-char		*pf_update_nums2str(char *str, t_list *el)
+char		*pf_update_nums2str(char *str, char *content, size_t size)
 {
 	size_t	i;
-	char	*num;
 
-	if (!el)
+	if (!content)
 	{
 		str[0] = '0';
 		return (str + 1);
 	}
 	i = 0;
-	num = el->content;
-	while (i < el->content_size)
+	while (i < size)
 	{
-		str[i] = num[i] + 48;
+		str[i] = content[i] + 48;
 		++i;
 	}
 	return (str + i);
