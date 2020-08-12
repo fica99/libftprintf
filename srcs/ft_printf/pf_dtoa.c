@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:17:32 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 18:19:16 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 19:13:35 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char				pf_is_correct_double(char *str, short exp, long mantis)
 	return (TRUE);
 }
 
-size_t				pf_dtoa(char **str, long double nb, int prec)
+size_t					pf_dtoa(char **str, long double nb, int prec)
 {
 	uint8_t			sign;
 	short			exp;
@@ -83,7 +83,7 @@ size_t				pf_dtoa(char **str, long double nb, int prec)
 	sign = (bites[0] & (1 << 7));
 	exp = pf_get_exp(bites);
 	mantis = pf_get_mantis(bites + 2);
-	if (!(num = (char*)malloc(LONG_DOUBLE_MALLOC_LEN)))
+	if (!(num = (char*)malloc(LONG_DOUBLE_MALLOC_LEN + prec)))
 		exit(EXIT_FAILURE);
 	sign ? ft_strcpy(num, "-") : ft_strcpy(num, "+");
 	if (!pf_is_correct_double(num + 1, exp, mantis))

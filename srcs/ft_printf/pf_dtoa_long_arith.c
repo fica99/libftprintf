@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_dtoi_long_arith.c                               :+:      :+:    :+:   */
+/*   pf_dtoa_long_arith.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:29:37 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/08 13:10:27 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 19:08:17 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			pf_carry(char *res, int size)
+void			pf_carry(char *res, int size, char is_str)
 {
+	size_t	nb;
+
+	nb = 0;
+	if (is_str)
+		nb = 48;
 	while (--size)
 	{
-		if (res[size] > 9)
+		if (res[size] - nb > 9)
 		{
-			res[size - 1] += res[size] / 10;
-			res[size] %= 10;
+			res[size - 1] += (res[size] - nb) / 10;
+			res[size] = (res[size] - nb) % 10 + nb;
 		}
 	}
 }
@@ -31,7 +36,7 @@ static void		pf_exp(char *res, int size, short pow)
 	tmp = size;
 	while (--tmp >= 0)
 		res[tmp] *= pow;
-	pf_carry(res, size);
+	pf_carry(res, size, FALSE);
 }
 
 char			*pf_pow(short pow, short exp)
