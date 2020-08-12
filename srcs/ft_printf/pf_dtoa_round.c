@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 13:55:39 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 16:31:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 18:15:39 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void			pf_dtoa_round_carry(char *str, size_t size)
 	{
 		if (str[size] - 48 > 9)
 		{
-			str[size - 1] = (str[size - 1] - 48) + (str[size] - 48) / 10 + 48;
+			str[size - 1] += (str[size] - 48) / 10;
 			str[size] = (str[size] - 48) % 10 + 48;
 		}
 	}
@@ -46,16 +46,13 @@ static void			pf_dtoa_round_add(char **str, size_t i, size_t prec)
 	size_t	size;
 
 	if (!prec)
-		*str[i - 2] += 1;
+		(*str)[i - 2] += 1;
 	else
-		*str[i + prec - 1] += 1;
+		(*str)[i + prec - 1] += 1;
 	pf_dtoa_round_carry(*str + i, prec);
 	pf_dtoa_round_carry(*str, i - 1);
 	size = i + prec;
-	pf_dig_over
-
-	flow(str, 1, &size);
-	pf_dig_overflow(str, i, &size);
+	pf_dig_overflow(str, 0, &size, TRUE);
 }
 
 static void			pf_dtoa_round_cut(char **str, size_t i, size_t prec)
@@ -65,7 +62,7 @@ static void			pf_dtoa_round_cut(char **str, size_t i, size_t prec)
 
 	num = *str;
 	if (num[i + prec] > '5')
-		pf_dtoa_round_add(str , i, prec);
+		pf_dtoa_round_add(str, i, prec);
 	else if (num[i + prec] == '5')
 	{
 		j = i + prec;
@@ -73,7 +70,7 @@ static void			pf_dtoa_round_cut(char **str, size_t i, size_t prec)
 		{
 			if (num[j] > '0')
 			{
-				pf_dtoa_round_add(str , i, prec);
+				pf_dtoa_round_add(str, i, prec);
 				break;
 			}
 		}
@@ -99,11 +96,12 @@ size_t				pf_dtoa_round(char **str, size_t prec)
 	while (num[i + j] && j < prec)
 		++j;
 	if (!num[i + j])
-	{
 		pf_dtoa_round_add_zeros(str, prec - j);
-		j = prec;
-	}
 	else
+	{
 		pf_dtoa_round_cut(str, i, prec);
-	return (i + j);
+		if (!prec)
+			--i;
+	}
+	return (i + prec);
 }

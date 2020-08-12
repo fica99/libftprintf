@@ -6,7 +6,7 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/08/12 13:51:46 by aashara-         ###   ########.fr        #
+#    Updated: 2020/08/12 17:56:47 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_dtoa.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_exp_mantis.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_long_arith.c\
-				$(FT_PRINTF_DIR)/pf_dtoa_list.c\
+				$(FT_PRINTF_DIR)/pf_dtoa_help.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_round.c\
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 16:04:30 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 17:56:41 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ size_t				pf_dtoa(char **str, long double num, int prec);
 **					pf_dtoa_exp_mantis.c
 */
 void				pf_exp_mantis2str(char *str, short exp,
-											unsigned long mantis);
+										unsigned long mantis);
 /*
 **					pf_dtoa_long_arith.c
 */
@@ -146,11 +146,11 @@ char				*pf_pow(short pow, short exp);
 char				*pf_div_pow(char *num, short prev_exp, short exp,
 															short pow);
 /*
-**					pf_dtoa_list.c
+**					pf_dtoa_help.c
 */
 void				pf_add_elem2list(char to_start, t_list **head, t_list *el);
 t_list				*pf_get_last(t_list *head);
-void				pf_dig_overflow(char **content, size_t i, size_t *size);
+void				pf_dig_overflow(char **content, size_t i, size_t *size, char is_str);
 char				*pf_update_nums2str(char *str, char *content, size_t size);
 /*
 **					pf_dtoa_round.c

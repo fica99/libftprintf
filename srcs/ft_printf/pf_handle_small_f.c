@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 14:48:25 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 18:19:27 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		pf_spec_small_f(t_printf *restrict pf)
 	else
 		num = va_arg(pf->argptr, double);
 	str_num = NULL;
-	len = pf_dtoa(&str_num, num, pf->prec);
+	len = pf_dtoa(&str_num, num, pf->prec) - 1;
 	if (str_num[1] == 'n')
 		pf_double_invalid_str_nan(pf, str_num);
 	else

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_dtoa_list.c                                     :+:      :+:    :+:   */
+/*   pf_dtoa_help.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 13:22:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 16:25:41 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 18:02:37 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,22 @@ void		pf_add_elem2list(char to_start, t_list **head, t_list *el)
 	}
 }
 
-void		pf_dig_overflow(char **content, size_t i, size_t *size)
+void		pf_dig_overflow(char **content, size_t i, size_t *size, char is_str)
 {
 	char	*num;
 	char	to_add;
+	int		nb;
 
 	if (!content || !*content)
 		return ;
 	num = *content;
-	to_add = 0;
-	if (num[i] > 9)
+	nb = 0;
+	if (is_str)
+		nb = 48;
+	if (num[i] - nb > 9)
 	{
-		to_add += num[i] / 10;
-		num[i] %= 10;
+		to_add = (num[i] - nb) / 10 + nb;
+		num[i] = (num[i] - nb) % 10 + nb;
 		if (!(num = ft_memalloc(++(*size))))
 			exit(EXIT_FAILURE);
 		ft_memcpy(num, *content, i);

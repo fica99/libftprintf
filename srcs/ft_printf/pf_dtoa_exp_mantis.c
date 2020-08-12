@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:25:20 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 16:23:07 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/12 18:03:50 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,19 @@ static void			pf_sum_pows(t_list *head, char is_after_coma)
 }
 
 static void			pf_sum_lists2str(char *str, t_list *before_coma,
-													t_list *after_coma)
+												t_list *after_coma)
 {
 	pf_sum_pows(before_coma, FALSE);
-	pf_dig_overflow((char**)&before_coma->content, 0, &before_coma->content_size);
+	pf_sum_pows(after_coma, TRUE);
+	pf_dig_overflow((char**)&before_coma->content, 0, &before_coma->content_size, FALSE);
 	str = pf_update_nums2str(str, before_coma->content, before_coma->content_size);
 	*(str++) = '.';
-	pf_sum_pows(after_coma, TRUE);
 	str = pf_update_nums2str(str, after_coma->content, after_coma->content_size);
 	*str = '\0';
 }
 
 void				pf_exp_mantis2str(char *str, short exp,
-											unsigned long mantis)
+										unsigned long mantis)
 {
 	int8_t			i;
 	int8_t			j;
