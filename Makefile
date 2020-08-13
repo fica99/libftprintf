@@ -6,7 +6,7 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/08/12 17:56:47 by aashara-         ###   ########.fr        #
+#    Updated: 2020/08/13 21:23:28 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,7 +126,7 @@ CC		=		gcc
 RM		=		rm -rf
 CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
-DFLGS	=		-MMD -MP -O0 -g
+DFLGS	=		-MMD -MP -O3
 
 # ------------  RULES  ------------------------------------------------------- #
 .PHONY: all clean fclean re

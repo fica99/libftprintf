@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:17:32 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/13 01:08:16 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/13 20:45:42 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char				pf_is_correct_double(char *str, short exp, long mantis)
 	if (exp - 1 == LONG_DOUBLE_EXP)
 	{
 		if (mantis == INF_MANTIS)
-			ft_strcpy(str, "inf");
+			ft_strcpy(str + 1, "inf");
 		else if (mantis)
 			ft_strcpy(str, "nan");
 		return (FALSE);
@@ -85,10 +85,14 @@ size_t					pf_dtoa(char **str, long double nb, int prec)
 	mantis = pf_get_mantis(bites + 2);
 	if (!(num = (char*)malloc(LONG_DOUBLE_MALLOC_LEN + prec)))
 		exit(EXIT_FAILURE);
-	sign ? ft_strcpy(num, "-") : ft_strcpy(num, "+");
-	if (!pf_is_correct_double(num + 1, exp, mantis))
-		return (4);
-	pf_exp_mantis2str(num + 1, exp, mantis);
 	*str = num;
+	sign ? ft_strcpy(num, "-") : ft_strcpy(num, "+");
+	if (!pf_is_correct_double(num, exp, mantis))
+	{
+		if (num[0] == 'n')
+			return (3);
+		return (4);
+	}
+	pf_exp_mantis2str(num + 1, exp, mantis);
 	return (pf_dtoa_round(str, prec));
 }

@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 13:55:39 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 23:55:46 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/13 20:13:39 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void			pf_dtoa_round_add(char **str, size_t i, size_t prec)
 	else
 		(*str)[i + prec - 1] += 1;
 	size = i + prec;
-	pf_carry(*str, size, TRUE);
-	pf_dig_overflow(str, 0, &size, TRUE);
+	pf_carry(*str + 1, size, TRUE);
+	pf_dig_overflow(str, 1, &size, TRUE);
 }
 
 static void			pf_dtoa_round_cut(char **str, size_t i, size_t prec)
@@ -41,9 +41,12 @@ static void			pf_dtoa_round_cut(char **str, size_t i, size_t prec)
 			if (num[j] > '0')
 			{
 				pf_dtoa_round_add(str, i, prec);
-				break ;
+				return ;
 			}
 		}
+		if (!num[j])
+			if (num[i - 2] % 2)
+				pf_dtoa_round_add(str, i, prec);
 	}
 }
 
@@ -65,9 +68,11 @@ size_t				pf_dtoa_round(char **str, size_t prec)
 		ft_memset(*str + i + j, '0', prec - j);
 	else
 		pf_dtoa_round_cut(str, i, prec);
+	num = ft_strchr(*str, '.');
+	i = num - *str;
 	if (!prec)
-		(*str)[--i] = '\0';
+		(*str)[i] = '\0';
 	else
-		(*str)[i + prec] = '\0';
+		(*str)[++i + prec] = '\0';
 	return (i + prec);
 }
