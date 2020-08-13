@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_buff_managment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:17:18 by aashara-          #+#    #+#             */
-/*   Updated: 2020/04/09 23:30:33 by aashara          ###   ########.fr       */
+/*   Updated: 2020/08/13 20:19:30 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ char		pf_check_sign(t_printf *restrict pf, intmax_t nb)
 		sign = (' ');
 	else
 		return (0);
-	// убрать костыль!!!
-	if ((!nb && !pf->prec) || sign)
-		if (pf->width)
-			--pf->width;
 	return (sign);
 }
 
@@ -80,8 +76,8 @@ void		pf_add_str(t_printf *restrict pf, char *str)
 
 void		pf_check_mem(t_printf *restrict pf, const size_t add_len)
 {
-	while (pf->buff_len + add_len >= pf->malloc_len) {
-
+	while (pf->buff_len + add_len >= pf->malloc_len)
+	{
 		if (!(pf->buff = ft_realloc((void*)pf->buff, pf->malloc_len,
 				(pf->malloc_len * 2))))
 			exit(1);

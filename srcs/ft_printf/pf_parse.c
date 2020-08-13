@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/04/09 23:52:08 by aashara          ###   ########.fr       */
+/*   Updated: 2020/08/07 16:42:12 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	pf_parse_width(const char *restrict format, t_printf *restrict pf)
 	}
 }
 
-static void	pf_parse_precision(const char *restrict format, t_printf *restrict pf)
+static void	pf_parse_precision(const char *restrict format,
+												t_printf *restrict pf)
 {
 	pf->prec = -1;
 	if (format[pf->i] == '.')

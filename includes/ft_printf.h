@@ -3,25 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/04/09 23:15:11 by aashara          ###   ########.fr       */
+/*   Updated: 2020/08/12 20:07:46 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF
-# define FT_PRINTF
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <limits.h>
 # include <stdint.h>
+# include <math.h>
 # include "libft.h"
 
-# define PRINTF_BUFF_SIZE 10000
+# define PRINTF_BUFF_SIZE 20000
 # define TRUE 1
 # define FALSE 0
 # define ASCII_SIZE 128
+# define LONG_DOUBLE_EXP 16383
+# define INF_MANTIS 128
+# define DEL_SIGN 127
+# define MANTIS_LEN 64
+# define LONG_DOUBLE_MALLOC_LEN 16500
+
 typedef enum		e_pf_flags
 {
 	PF_FL_INIT = 0,
@@ -111,10 +118,43 @@ void				pf_handle_p(t_printf *restrict pf, intmax_t nb, char *str);
 /*
 **					pf_handle_x.c
 */
-void				pf_handle_x(t_printf *restrict pf, intmax_t nb, char *str, char is_big);
+void				pf_handle_x(t_printf *restrict pf, intmax_t nb,
+												char *str, char is_big);
 /*
 **					pf_ltoa.c
 */
 char				*ft_ultoa_base(uintmax_t n, int base, char cap);
 char				*ft_iltoa(intmax_t num);
+/*
+**					pf_handle_small_f.c
+*/
+void				pf_spec_small_f(t_printf *restrict pf);
+/*
+**					pf_dtoa.c
+*/
+size_t				pf_dtoa(char **str, long double num, int prec);
+/*
+**					pf_dtoa_exp_mantis.c
+*/
+void				pf_exp_mantis2str(char *str, short exp,
+										unsigned long mantis);
+/*
+**					pf_dtoa_long_arith.c
+*/
+void				pf_carry(char *res, int size, char is_str);
+char				*pf_pow(short pow, short exp);
+char				*pf_div_pow(char *num, short prev_exp, short exp,
+															short pow);
+/*
+**					pf_dtoa_help.c
+*/
+void				pf_add_elem2list(char to_start, t_list **head, t_list *el);
+t_list				*pf_get_last(t_list *head);
+void				pf_dig_overflow(char **content, size_t i, size_t *size,
+																char is_str);
+char				*pf_update_nums2str(char *str, t_list *el);
+/*
+**					pf_dtoa_round.c
+*/
+size_t				pf_dtoa_round(char **str, size_t prec);
 #endif

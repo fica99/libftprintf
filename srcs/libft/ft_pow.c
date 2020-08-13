@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:06:43 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/05 19:45:48 by aashara-         ###   ########.fr       */
+/*   Created: 2020/08/01 14:38:06 by aashara-          #+#    #+#             */
+/*   Updated: 2020/08/01 15:53:26 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+double	ft_pow(double num, short pow)
 {
-	if (alst && *alst)
+	unsigned short	i;
+	char			is_minus;
+	double			res;
+
+	is_minus = 0;
+	if (pow < 0)
 	{
-		if ((*alst)->next)
-			ft_lstdel((&(*alst)->next), del);
-		ft_lstdelone(alst, del);
+		is_minus = 1;
+		pow *= -1;
 	}
+	i = 0;
+	res = 1;
+	while (i < pow)
+	{
+		res *= num;
+		++i;
+	}
+	if (is_minus)
+		res = 1 / res;
+	return (res);
 }

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 21:55:55 by aashara-          #+#    #+#             */
-/*   Updated: 2020/02/29 16:57:34 by aashara-         ###   ########.fr       */
+/*   Created: 2020/08/05 18:19:52 by aashara-          #+#    #+#             */
+/*   Updated: 2020/08/05 18:20:38 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+int	ft_abs(int num)
 {
-	ft_printf("%+5.0d", 0);
-	return (0);
+	if (num >= 0)
+		return (num);
+	return (-1 * num);
 }

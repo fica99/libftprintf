@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+         #
+#    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/03/03 21:24:35 by ggrimes          ###   ########.fr        #
+#    Updated: 2020/08/13 21:23:28 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,8 @@ LIBFT_FLS = 	$(LIBFT_DIR)/ft_strlen.c\
 				$(LIBFT_DIR)/ft_max.c\
 				$(LIBFT_DIR)/ft_pathjoin.c\
 				$(LIBFT_DIR)/ft_pathcmp.c\
-
+				$(LIBFT_DIR)/ft_pow.c\
+				$(LIBFT_DIR)/ft_abs.c\
 
 FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_tables.c\
@@ -106,6 +107,12 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_handle_p.c\
 				$(FT_PRINTF_DIR)/pf_handle_x.c\
 				$(FT_PRINTF_DIR)/pf_ltoa.c\
+				$(FT_PRINTF_DIR)/pf_handle_small_f.c\
+				$(FT_PRINTF_DIR)/pf_dtoa.c\
+				$(FT_PRINTF_DIR)/pf_dtoa_exp_mantis.c\
+				$(FT_PRINTF_DIR)/pf_dtoa_long_arith.c\
+				$(FT_PRINTF_DIR)/pf_dtoa_help.c\
+				$(FT_PRINTF_DIR)/pf_dtoa_round.c\
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 
@@ -119,7 +126,7 @@ CC		=		gcc
 RM		=		rm -rf
 CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
-DFLGS	=		-MMD -MP
+DFLGS	=		-MMD -MP -O3
 
 # ------------  RULES  ------------------------------------------------------- #
 .PHONY: all clean fclean re
