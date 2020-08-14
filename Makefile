@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
+#    By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/08/13 21:23:28 by aashara-         ###   ########.fr        #
+#    Updated: 2020/08/14 10:20:09 by olegmulko        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_long_arith.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_help.c\
 				$(FT_PRINTF_DIR)/pf_dtoa_round.c\
+				$(FT_PRINTF_DIR)/pf_handle_u.c\
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 
@@ -126,7 +127,7 @@ CC		=		gcc
 RM		=		rm -rf
 CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
-DFLGS	=		-MMD -MP -O3
+DFLGS	=		-MMD -MP -O3 -g
 
 # ------------  RULES  ------------------------------------------------------- #
 .PHONY: all clean fclean re
