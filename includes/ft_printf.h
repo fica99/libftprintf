@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/12 20:07:46 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/14 10:19:37 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				pf_spec_p(t_printf *restrict pf);
 */
 void				pf_spec_big_x(t_printf *restrict pf);
 void				pf_spec_small_x(t_printf *restrict pf);
+void				pf_spec_uint(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
@@ -157,4 +158,8 @@ char				*pf_update_nums2str(char *str, t_list *el);
 **					pf_dtoa_round.c
 */
 size_t				pf_dtoa_round(char **str, size_t prec);
+/*
+**					pf_handle_u.c
+*/
+void				pf_handle_u(t_printf *restrict pf, intmax_t nb, char *str);
 #endif

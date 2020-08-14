@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_spec_handlers2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 18:50:16 by aashara-          #+#    #+#             */
-/*   Updated: 2020/03/05 21:46:48 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/14 10:20:01 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ void			pf_spec_big_x(t_printf *restrict pf)
 void			pf_spec_small_x(t_printf *restrict pf)
 {
 	pf_spec_x(pf, 0);
+}
+
+void			pf_spec_uint(t_printf *restrict pf)
+{
+	intmax_t	num;
+	char		*str;
+
+	num = va_arg(pf->argptr, intmax_t);
+	num = pf_convert_unb(pf->mod, num);
+	str = ft_iltoa(num);
+	pf_handle_u(pf, num, str);
 }
