@@ -6,7 +6,7 @@
 /*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 14:21:30 by olegmulko         #+#    #+#             */
-/*   Updated: 2020/08/17 14:21:34 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 16:09:16 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ t_len_opts	*pf_init_len_opts(t_printf *restrict pf, intmax_t nb, char *str)
 
 	if (!(len_opts = (t_len_opts*)malloc(sizeof(t_len_opts))))
 		exit(1);
-	len_opts->num_len = pf_get_num_len(pf, nb, str);
+	len_opts->sign = pf_check_sign(pf, nb);
+	len_opts->num_len = pf_get_num_len(nb, str, len_opts->sign);
 	len_opts->w_len = pf_get_w_len(pf, len_opts->num_len);
-	len_opts->ac_len = pf_get_ac_len(pf, nb, len_opts->num_len);
+	len_opts->ac_len = pf_get_ac_len(pf, nb, len_opts);
 	len_opts->nstr_len = ft_strlen(str);
 	return (len_opts);
 }
 
-size_t	pf_get_num_len(t_printf *restrict pf, intmax_t nb, char *str)
+size_t	pf_get_num_len(intmax_t nb, char *str, char sign)
 {
 	size_t	num_len;
-	char	sign;
 
+	(void)nb;
 	num_len = ft_strlen(str);
-	sign = pf_check_sign(pf, nb);
 	if (sign)
 		num_len++;
 	return (num_len);
@@ -44,9 +44,16 @@ size_t	pf_get_w_len(t_printf *restrict pf, size_t num_len)
 	return (num_len);
 }
 
-size_t	pf_get_ac_len(t_printf *restrict pf, intmax_t nb, size_t num_len)
+size_t	pf_get_ac_len(t_printf *restrict pf, intmax_t nb, t_len_opts *len_opts)
 {
-	if ((int)num_len < pf->prec || (!pf->prec && !nb))
+	if (!pf->prec && !nb)
 		return ((size_t)pf->prec);
-	return (num_len);
+	else if ((int)len_opts->num_len < pf->prec)
+	{
+		if (len_opts->sign)
+			return ((size_t)pf->prec + 1);
+		return ((size_t)pf->prec);
+	}
+	else
+		return (len_opts->num_len);
 }

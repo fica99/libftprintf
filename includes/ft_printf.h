@@ -6,7 +6,7 @@
 /*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 14:38:03 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 16:04:54 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_printf
 
 typedef struct		s_len_opts
 {
+	char			sign;
 	size_t			num_len;
 	size_t			w_len;
 	size_t			ac_len;
@@ -175,11 +176,12 @@ void				pf_handle_u(t_printf *restrict pf, intmax_t nb, char *str);
 **					pf_len_opts.c
 */
 t_len_opts			*pf_init_len_opts(t_printf *restrict pf, intmax_t nb, char *str);
-size_t				pf_get_num_len(t_printf *restrict pf, intmax_t nb, char *str);
+size_t				pf_get_num_len(intmax_t nb, char *str, char sign);
 size_t				pf_get_w_len(t_printf *restrict pf, size_t num_len);
-size_t				pf_get_ac_len(t_printf *restrict pf, intmax_t nb, size_t num_len);
+size_t				pf_get_ac_len(t_printf *restrict pf, intmax_t nb, t_len_opts *len_opts);
 /*
 **					pf_handle_func.c
 */
 void				pf_align_to_width(t_printf *restrict pf, char c, t_len_opts	*len_opts);
+void				pf_align_to_accuracy(t_printf *restrict pf, char c, t_len_opts *len_opts);
 #endif

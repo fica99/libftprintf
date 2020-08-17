@@ -6,7 +6,7 @@
 /*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 08:18:29 by olegmulko         #+#    #+#             */
-/*   Updated: 2020/08/17 08:50:42 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 15:55:22 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(void)
 {
-	ft_printf("this %d number", -267);
+	ft_printf("%.6d", -3);
 	return (0);
 }
