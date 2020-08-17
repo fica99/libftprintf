@@ -6,7 +6,7 @@
 /*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 14:21:45 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 09:52:10 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,6 @@ typedef struct		s_printf
 	int				prec;
 	char			*buff;
 }					t_printf;
-
-typedef struct		s_len_opts
-{
-	size_t			num_len;
-	size_t			w_len;
-	size_t			ac_len;
-	size_t			nstr_len;
-}					t_len_opts;
 
 /*
 **					ft_printf.c
@@ -171,11 +163,4 @@ size_t				pf_dtoa_round(char **str, size_t prec);
 **					pf_handle_u.c
 */
 void				pf_handle_u(t_printf *restrict pf, intmax_t nb, char *str);
-/*
-**					pf_len_opts.c
-*/
-t_len_opts			*pf_init_len_opts(t_printf *restrict pf, intmax_t nb, char *str);
-size_t				pf_get_num_len(t_printf *restrict pf, intmax_t nb, char *str);
-size_t				pf_get_w_len(t_printf *restrict pf, size_t num_len);
-size_t				pf_get_ac_len(t_printf *restrict pf, intmax_t nb, size_t num_len);
 #endif

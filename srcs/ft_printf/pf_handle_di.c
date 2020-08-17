@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_di.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:16:46 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/04/09 23:50:04 by aashara          ###   ########.fr       */
+/*   Updated: 2020/08/17 14:15:55 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	pf_pre_di(t_printf *restrict pf, intmax_t nb, size_t len)
+static t_len_opts	*pf_pre_di(t_printf *restrict pf, intmax_t nb, t_len_opts *len_opts)
 {
 	char		sign;
 	size_t		res_len;
+	size_t		len;
 	char		is_prec;
 
+	len = len_opts->num_len;
 	if ((int)len < pf->prec || (!pf->prec && !nb))
 		res_len = pf->prec;
 	else
@@ -32,18 +34,18 @@ static size_t	pf_pre_di(t_printf *restrict pf, intmax_t nb, size_t len)
 		pf->buff[pf->buff_len++] = sign;
 	while (len++ < res_len)
 		pf->buff[pf->buff_len++] = '0';
-	return (res_len);
+	return (len_opts);
 }
 
 void			pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str)
 {
-	size_t	len;
+	t_len_opts	*len_opts;
 
-	len = ft_strlen(str);
-	pf_check_mem(pf, pf->width + len + 1);
-	len = pf_pre_di(pf, nb, len);
-	pf_add_str_2_buff(pf, str, len);
+	len_opts = pf_init_len_opts(pf, nb, str);
+	pf_check_mem(pf, pf->width + len_opts->w_len + 1);
+	len_opts = pf_pre_di(pf, nb, len_opts);
+	pf_add_str_2_buff(pf, str, len_opts->nstr_len);
 	if (pf->flags & PF_FL_MINUS)
-		pf_add_symb(pf, ' ', len);
+		pf_add_symb(pf, ' ', 0);
 	ft_strdel(&str);
 }
