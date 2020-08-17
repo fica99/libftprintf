@@ -129,7 +129,7 @@ CC		=		gcc
 RM		=		rm -rf
 CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
-DFLGS	=		-MMD -MP -O0 -g
+DFLGS	=		-MMD -MP -O3
 
 # ------------  RULES  ------------------------------------------------------- #
 .PHONY: all clean fclean re
