@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_tables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/14 09:58:55 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 22:06:16 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_pf_flags		*pf_flags_table(void)
 	return (table);
 }
 
-t_pf_mod_len		*pf_mod_table(void)
+t_pf_mod_len	*pf_mod_table(void)
 {
 	static char			is_init;
 	static t_pf_mod_len	table[ASCII_SIZE];
@@ -47,10 +47,10 @@ t_pf_mod_len		*pf_mod_table(void)
 	return (table);
 }
 
-void				*pf_spec_table(const char c)
+void			*pf_spec_table(const char c)
 {
-	static char			is_init;
-	static void			*table[ASCII_SIZE];
+	static char		is_init;
+	static void		*table[ASCII_SIZE];
 
 	if (!is_init)
 	{

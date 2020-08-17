@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_convert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:18:04 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/07 16:52:26 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/17 14:30:32 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 intmax_t	pf_convert_nb(t_pf_mod_len mod, intmax_t num)
 {
 	if (mod == PF_ML_INIT)
-		return ((unsigned int)num);
+		return ((int)num);
 	else if (mod == PF_ML_H)
 		return ((short)num);
 	else if (mod == PF_ML_HH)

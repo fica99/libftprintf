@@ -3,47 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_di.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara <aashara@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:16:46 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/04/09 23:50:04 by aashara          ###   ########.fr       */
+/*   Updated: 2020/08/17 22:09:35 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	pf_pre_di(t_printf *restrict pf, intmax_t nb, size_t len)
+static void	*pf_pre_di(t_printf *restrict pf, t_len_opts *len_opts)
 {
-	char		sign;
-	size_t		res_len;
 	char		is_prec;
 
-	if ((int)len < pf->prec || (!pf->prec && !nb))
-		res_len = pf->prec;
-	else
-		res_len = len;
-	sign = pf_check_sign(pf, nb);
 	is_prec = (pf->flags & PF_FL_ZERO) && pf->prec == -1;
-	if (sign && is_prec)
-		pf->buff[pf->buff_len++] = sign;
+	if (len_opts->sign && is_prec)
+		pf->buff[pf->buff_len++] = len_opts->sign;
 	if (!(pf->flags & PF_FL_MINUS))
-		pf_add_symb(pf, is_prec ? '0' : ' ', res_len);
-	if (sign && !is_prec)
-		pf->buff[pf->buff_len++] = sign;
-	while (len++ < res_len)
-		pf->buff[pf->buff_len++] = '0';
-	return (res_len);
+		pf_align_to_width(pf, is_prec ? '0' : ' ', len_opts);
+	if (len_opts->sign && !is_prec)
+		pf->buff[pf->buff_len++] = len_opts->sign;
+	pf_align_to_accuracy(pf, '0', len_opts);
+	return (len_opts);
 }
 
-void			pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str)
+void		pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str)
 {
-	size_t	len;
+	t_len_opts	*len_opts;
+	char		print_num;
 
-	len = ft_strlen(str);
-	pf_check_mem(pf, pf->width + len + 1);
-	len = pf_pre_di(pf, nb, len);
-	pf_add_str_2_buff(pf, str, len);
+	len_opts = pf_init_len_opts(pf, nb, str);
+	pf_check_mem(pf, pf->width + len_opts->w_len + 1);
+	pf_pre_di(pf, len_opts);
+	print_num = (!nb && !pf->prec) ? 0 : 1;
+	if (print_num)
+		pf_add_str_2_buff(pf, str, len_opts->nstr_len);
 	if (pf->flags & PF_FL_MINUS)
-		pf_add_symb(pf, ' ', len);
+		pf_align_to_width(pf, ' ', len_opts);
 	ft_strdel(&str);
 }

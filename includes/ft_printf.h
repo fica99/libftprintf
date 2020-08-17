@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/14 10:19:37 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 22:06:24 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ typedef struct		s_printf
 	char			*buff;
 }					t_printf;
 
+typedef struct		s_len_opts
+{
+	char			sign;
+	size_t			num_len;
+	size_t			w_len;
+	size_t			ac_len;
+	size_t			nstr_len;
+}					t_len_opts;
+
 /*
 **					ft_printf.c
 */
@@ -108,6 +117,7 @@ char				pf_check_sign(t_printf *restrict pf, intmax_t nb);
 */
 intmax_t			pf_convert_nb(t_pf_mod_len mod, intmax_t num);
 intmax_t			pf_convert_unb(t_pf_mod_len mod, intmax_t num);
+intmax_t			pf_convert_nb_test(t_printf *restrict pf);
 /*
 **					pf_handle_di.c
 */
@@ -162,4 +172,20 @@ size_t				pf_dtoa_round(char **str, size_t prec);
 **					pf_handle_u.c
 */
 void				pf_handle_u(t_printf *restrict pf, intmax_t nb, char *str);
+/*
+**					pf_len_opts.c
+*/
+t_len_opts			*pf_init_len_opts(t_printf *restrict pf, intmax_t nb,
+	char *str);
+size_t				pf_get_num_len(intmax_t nb, char *str, char sign, int prec);
+size_t				pf_get_w_len(t_printf *restrict pf, size_t num_len);
+size_t				pf_get_ac_len(t_printf *restrict pf, intmax_t nb,
+	t_len_opts *len_opts);
+/*
+**					pf_handle_func.c
+*/
+void				pf_align_to_width(t_printf *restrict pf, char c,
+	t_len_opts	*len_opts);
+void				pf_align_to_accuracy(t_printf *restrict pf, char c,
+	t_len_opts *len_opts);
 #endif
