@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 14:30:05 by olegmulko         #+#    #+#             */
-/*   Updated: 2020/08/17 15:34:06 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/17 22:06:14 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	pf_align_to_width(t_printf *restrict pf, char c, t_len_opts *len_opts)
 	}
 }
 
-void	pf_align_to_accuracy(t_printf *restrict pf, char c, t_len_opts *len_opts)
+void	pf_align_to_accuracy(t_printf *restrict pf, char c,
+	t_len_opts *len_opts)
 {
 	size_t	i;
 
