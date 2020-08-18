@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+         #
+#    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/08/18 19:53:49 by ggrimes          ###   ########.fr        #
+#    Updated: 2020/08/18 23:40:36 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_len_opts.c\
 				$(FT_PRINTF_DIR)/pf_handle_func.c\
 				$(FT_PRINTF_DIR)/pf_handle_o.c\
+				$(FT_PRINTF_DIR)/ft_dprintf.c
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 

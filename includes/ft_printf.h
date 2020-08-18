@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 22:35:30 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/18 23:49:44 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ typedef struct		s_len_opts
 **					ft_printf.c
 */
 int					ft_printf(const char *restrict format, ...);
+/*
+**					ft_dprintf.c
+*/
+void				pf_init_start(t_printf *pf);
+int					ft_dprintf(int fd, const char *restrict format, ...);
 /*
 **					pf_parse.c
 */
