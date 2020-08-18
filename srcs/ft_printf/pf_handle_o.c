@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 22:31:39 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/17 23:58:36 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/18 23:21:31 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,29 @@ static void	*pf_pre_o(t_printf *restrict pf, t_len_opts *len_opts)
 	return (len_opts);
 }
 
-static void pf_check_hash_lo(t_printf *restrict pf, t_len_opts *len_opts, intmax_t nb)
+static void	pf_check_hash_lo(t_printf *restrict pf, t_len_opts *len_opts,
+	intmax_t nb)
 {
-	if (pf->flags & PF_FL_HASH && nb)
+	(void)nb;
+	if (pf->flags & PF_FL_HASH)
 	{
-		if (len_opts->num_len >= len_opts->w_len)
+		if (len_opts->w_len >= len_opts->num_len)
 		{
-			len_opts->w_len++;
-			len_opts->ac_len++;
-			len_opts->num_len++;
+			if (pf->width > len_opts->num_len && pf->prec == -1 && nb)
+			{
+				len_opts->ac_len++;
+				len_opts->num_len++;
+			}
+			else if (pf->prec != -1
+				&& (size_t)pf->prec > len_opts->num_len && nb)
+				len_opts->num_len++;
+			else if (pf->prec != -1 && ((size_t)pf->prec < len_opts->num_len
+				|| (!pf->prec && !nb)))
+			{
+				len_opts->ac_len++;
+				len_opts->num_len++;
+			}
 		}
-		// else if (len_opts->ac_len > len_opts->num_len)
-		// {
-		// 	len_opts->ac_len--;
-		// 	len_opts->num_len++;
-		// }
-		// else
-		// {
-		// 	len_opts->ac_len++;
-		// 	len_opts->num_len++;
-		// }
 	}
 }
 
@@ -63,7 +66,7 @@ void		pf_handle_o(t_printf *restrict pf, intmax_t nb, char *str)
 	pf_check_hash_lo(pf, len_opts, nb);
 	pf_check_mem(pf, pf->width + len_opts->w_len + 1);
 	pf_pre_o(pf, len_opts);
-	print_num = (!nb && !pf->prec) ? 0 : 1;
+	print_num = (!nb && (!pf->prec || pf->flags & PF_FL_HASH)) ? 0 : 1;
 	if (print_num)
 		pf_add_str_2_buff(pf, str, len_opts->nstr_len);
 	if (pf->flags & PF_FL_MINUS)
