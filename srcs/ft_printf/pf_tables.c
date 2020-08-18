@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_tables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 22:30:58 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/19 00:04:00 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_pf_flags		*pf_flags_table(void)
 		table['0'] = PF_FL_ZERO;
 		table['+'] = PF_FL_PLUS;
 		table[' '] = PF_FL_SPACE;
+		table['b'] = PF_FL_BIN;
 		is_init = TRUE;
 	}
 	return (table);

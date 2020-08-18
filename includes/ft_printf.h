@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/18 23:49:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 00:04:12 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum		e_pf_flags
 	PF_FL_MINUS = 4,
 	PF_FL_PLUS = 8,
 	PF_FL_SPACE = 16,
+	PF_FL_BIN = 32,
 }					t_pf_flags;
 
 typedef enum		e_pf_mod_len
