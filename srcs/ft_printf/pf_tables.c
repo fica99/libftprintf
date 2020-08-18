@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 22:06:16 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/17 22:30:58 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			*pf_spec_table(const char c)
 		table['p'] = (void*)&pf_spec_p;
 		table['x'] = (void*)&pf_spec_small_x;
 		table['X'] = (void*)&pf_spec_big_x;
-	//	table['o'] = (void*)&pf_spec_uint;
+		table['o'] = (void*)&pf_spec_o;
 		table['u'] = (void*)&pf_spec_uint;
 		table['f'] = (void*)&pf_spec_small_f;
 		// table['e'] = ;

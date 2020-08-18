@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/17 22:06:24 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/17 22:35:30 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void				pf_spec_p(t_printf *restrict pf);
 void				pf_spec_big_x(t_printf *restrict pf);
 void				pf_spec_small_x(t_printf *restrict pf);
 void				pf_spec_uint(t_printf *restrict pf);
+void				pf_spec_o(t_printf *restrict pf);
 /*
 **					pf_buff_managment.c
 */
@@ -188,4 +189,8 @@ void				pf_align_to_width(t_printf *restrict pf, char c,
 	t_len_opts	*len_opts);
 void				pf_align_to_accuracy(t_printf *restrict pf, char c,
 	t_len_opts *len_opts);
+/*
+**					pf_handle_o.c
+*/
+void				pf_handle_o(t_printf *restrict pf, intmax_t nb, char *str);
 #endif
