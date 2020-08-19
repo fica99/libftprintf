@@ -6,7 +6,7 @@
 #    By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:57:06 by aashara-          #+#    #+#              #
-#    Updated: 2020/08/19 16:48:57 by aashara-         ###   ########.fr        #
+#    Updated: 2020/08/19 22:02:52 by aashara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,7 +117,8 @@ FT_PRINTF_FLS = $(FT_PRINTF_DIR)/ft_printf.c\
 				$(FT_PRINTF_DIR)/pf_len_opts.c\
 				$(FT_PRINTF_DIR)/pf_handle_func.c\
 				$(FT_PRINTF_DIR)/pf_handle_o.c\
-				$(FT_PRINTF_DIR)/ft_dprintf.c
+				$(FT_PRINTF_DIR)/ft_dprintf.c\
+				$(FT_PRINTF_DIR)/pf_parse_color.c
 
 GNL_FLS = $(GNL_DIR)/get_next_line.c\
 

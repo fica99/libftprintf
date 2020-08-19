@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 15:31:47 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 22:04:59 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,4 +201,8 @@ void				pf_align_to_accuracy(t_printf *restrict pf, char c,
 **					pf_handle_o.c
 */
 void				pf_handle_o(t_printf *restrict pf, intmax_t nb, char *str);
+/*
+**					pf_parse_color.c
+*/
+char				pf_parse_color(const char *format, t_printf *pf);
 #endif
