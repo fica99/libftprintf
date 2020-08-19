@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_di.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:16:46 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/17 22:09:35 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/19 23:12:53 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@ static void	*pf_pre_di(t_printf *restrict pf, t_len_opts *len_opts)
 	return (len_opts);
 }
 
+static void	pf_check_w_len_plus(t_printf *restrict pf, t_len_opts *len_opts,
+	intmax_t nb)
+{
+	if (!nb && pf->width > 0 && !pf->prec && len_opts->sign)
+		len_opts->w_len--;
+}
+
 void		pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str)
 {
 	t_len_opts	*len_opts;
 	char		print_num;
 
 	len_opts = pf_init_len_opts(pf, nb, str);
+	pf_check_w_len_plus(pf, len_opts, nb);
 	pf_check_mem(pf, pf->width + len_opts->w_len + 1);
 	pf_pre_di(pf, len_opts);
 	print_num = (!nb && !pf->prec) ? 0 : 1;
