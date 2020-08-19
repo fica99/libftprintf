@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 00:08:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 14:58:40 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pf_spec_c(t_printf *restrict pf)
 	chrcter = va_arg(pf->argptr, int);
 	if (pf->flags & PF_FL_BIN)
 	{
-		str = ft_ultoa_base(chrcter, 2, '0');
+		str = pf_get_bits(1, &chrcter);
 		pf_add_str(pf, str);
 		ft_strdel(&str);
 	}
@@ -36,9 +36,17 @@ void	pf_spec_c(t_printf *restrict pf)
 void	pf_spec_s(t_printf *restrict pf)
 {
 	char		*str;
+	char		*bits;
 
 	str = va_arg(pf->argptr, char*);
-	pf_add_str(pf, str);
+	if (pf->flags & PF_FL_BIN)
+	{
+		bits = pf_get_bits(ft_strlen(str), (void*)str);
+		pf_add_str(pf, bits);
+		ft_strdel(&bits);
+	}
+	else
+		pf_add_str(pf, str);
 }
 
 void	pf_spec_percent(t_printf *restrict pf)

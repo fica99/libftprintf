@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_convert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:18:04 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/18 00:04:53 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/19 14:53:43 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,26 @@ intmax_t	pf_convert_unb(t_pf_mod_len mod, intmax_t num)
 		return ((size_t)num);
 	else
 		return ((unsigned int)num);
+}
+
+char	*pf_get_bits(size_t size, void *ptr)
+{
+	unsigned char	*b;
+	char			*str;
+	int				i;
+	int				j;
+
+	if (!size || !ptr)
+		return (NULL);
+	if (!(str = ft_strnew(size * 8)))
+		exit(EXIT_FAILURE);
+	b = (unsigned char*)ptr;
+	i = size;
+	while (--i >= 0)
+	{
+		j = 8;
+		while (--j >= 0)
+			*(str++) = ((b[i] >> j) & 1)? '1' : '0';
+	}
+	return (str - size * 8);
 }

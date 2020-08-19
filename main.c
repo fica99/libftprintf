@@ -2,6 +2,6 @@
 
 int main(void)
 {
-	ft_printf("%b0100.10c\n", 1);
+	ft_printf("%b1s\n", "a");
 	return (0);
 }
