@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/18 23:49:44 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:31:47 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum		e_pf_flags
 	PF_FL_MINUS = 4,
 	PF_FL_PLUS = 8,
 	PF_FL_SPACE = 16,
+	PF_FL_BIN = 32,
 }					t_pf_flags;
 
 typedef enum		e_pf_mod_len
@@ -123,7 +124,9 @@ char				pf_check_sign(t_printf *restrict pf, intmax_t nb);
 */
 intmax_t			pf_convert_nb(t_pf_mod_len mod, intmax_t num);
 intmax_t			pf_convert_unb(t_pf_mod_len mod, intmax_t num);
-intmax_t			pf_convert_nb_test(t_printf *restrict pf);
+size_t				pf_get_nb_size(t_pf_mod_len mod);
+size_t				pf_get_unb_size(t_pf_mod_len mod);
+char				*pf_get_bits(size_t size, void *ptr);
 /*
 **					pf_handle_di.c
 */
