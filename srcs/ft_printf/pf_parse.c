@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:42:12 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 21:28:01 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ void		pf_parse_string(const char *restrict format, t_printf *restrict pf)
 			f(pf);
 		return ;
 	}
+	else if (format[pf->i] == '{')
+		if (pf_parse_color(format, pf))
+			return ;
 	pf_check_mem(pf, 1);
 	pf->buff[(pf->buff_len)++] = format[(pf->i)++];
 }
