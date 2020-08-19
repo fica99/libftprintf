@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 14:58:40 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:32:11 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pf_spec_c(t_printf *restrict pf)
 	chrcter = va_arg(pf->argptr, int);
 	if (pf->flags & PF_FL_BIN)
 	{
-		str = pf_get_bits(1, &chrcter);
+		str = pf_get_bits(sizeof(char), &chrcter);
 		pf_add_str(pf, str);
 		ft_strdel(&str);
 	}
@@ -41,7 +41,7 @@ void	pf_spec_s(t_printf *restrict pf)
 	str = va_arg(pf->argptr, char*);
 	if (pf->flags & PF_FL_BIN)
 	{
-		bits = pf_get_bits(ft_strlen(str), (void*)str);
+		bits = pf_get_bits(ft_strlen(str) * sizeof(char), (void*)str);
 		pf_add_str(pf, bits);
 		ft_strdel(&bits);
 	}
@@ -63,7 +63,10 @@ void	pf_spec_int(t_printf *restrict pf)
 		pf->flags &= ~PF_FL_SPACE;
 	num = va_arg(pf->argptr, intmax_t);
 	num = pf_convert_nb(pf->mod, num);
-	str = ft_iltoa(num);
+	if (pf->flags & PF_FL_BIN)
+		str = pf_get_bits(pf_get_nb_size(pf->mod), &num);
+	else
+		str = ft_iltoa(num);
 	pf_handle_di(pf, num, str);
 }
 

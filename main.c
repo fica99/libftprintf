@@ -2,6 +2,6 @@
 
 int main(void)
 {
-	ft_printf("%b1s\n", "a");
+	ft_printf("%bd\n", 1);
 	return (0);
 }

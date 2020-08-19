@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 14:47:57 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:31:47 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ char				pf_check_sign(t_printf *restrict pf, intmax_t nb);
 */
 intmax_t			pf_convert_nb(t_pf_mod_len mod, intmax_t num);
 intmax_t			pf_convert_unb(t_pf_mod_len mod, intmax_t num);
+size_t				pf_get_nb_size(t_pf_mod_len mod);
+size_t				pf_get_unb_size(t_pf_mod_len mod);
 char				*pf_get_bits(size_t size, void *ptr);
 /*
 **					pf_handle_di.c

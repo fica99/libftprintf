@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:18:04 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/19 14:53:43 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:31:35 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,44 @@ intmax_t	pf_convert_unb(t_pf_mod_len mod, intmax_t num)
 		return ((size_t)num);
 	else
 		return ((unsigned int)num);
+}
+
+size_t	pf_get_nb_size(t_pf_mod_len mod)
+{
+		if (mod == PF_ML_INIT)
+		return (sizeof(int));
+	else if (mod == PF_ML_H)
+		return (sizeof(short));
+	else if (mod == PF_ML_HH)
+		return (sizeof(char));
+	else if (mod == PF_ML_L)
+		return (sizeof(long));
+	else if (mod == PF_ML_LL)
+		return (sizeof(long long));
+	else if (mod == PF_ML_J || mod == PF_ML_T)
+		return (sizeof(intmax_t));
+	else if (mod == PF_ML_Z)
+		return (sizeof(size_t));
+	else
+		return (sizeof(int));
+}
+
+size_t	pf_get_unb_size(t_pf_mod_len mod)
+{
+	if (mod == PF_ML_H)
+		return (sizeof(unsigned short));
+	else if (mod == PF_ML_HH)
+		return (sizeof(unsigned char));
+	else if (mod == PF_ML_L)
+		return (sizeof(unsigned long));
+	else if (mod == PF_ML_LL)
+		return (sizeof(unsigned long long));
+	else if (mod == PF_ML_J || mod == PF_ML_T)
+		return (sizeof(uintmax_t));
+	else if (mod == PF_ML_Z)
+		return (sizeof(size_t));
+	else
+		return (sizeof(unsigned int));
 }
 
 char	*pf_get_bits(size_t size, void *ptr)
