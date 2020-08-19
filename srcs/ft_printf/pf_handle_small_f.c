@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 16:00:28 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/13 21:22:49 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 16:44:35 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,22 @@ void		pf_spec_small_f(t_printf *restrict pf)
 	char		*str_num;
 	size_t		len;
 
-	if (pf->prec == -1)
-		pf->prec = 6;
-	if (pf->flags & PF_FL_PLUS)
-		pf->flags &= ~PF_FL_SPACE;
-	if (pf->mod & PF_ML_BL)
-		num = va_arg(pf->argptr, long double);
+	num = ((pf->mod & PF_ML_BL) ? va_arg(pf->argptr, long double) :
+											va_arg(pf->argptr, double));
+	if (pf->flags & PF_FL_BIN)
+	{
+		str_num = pf_get_bits(10, &num);
+		pf_add_str(pf, str_num);
+	}
 	else
-		num = va_arg(pf->argptr, double);
-	str_num = NULL;
-	len = pf_dtoa(&str_num, num, pf->prec);
-	if (!ft_isdigit(str_num[1]))
-		pf_double_invalid_str(pf, str_num, len);
-	else
-		pf_double_handle_flags(pf, str_num, len);
+	{
+		if (pf->prec == -1)
+			pf->prec = 6;
+		if (pf->flags & PF_FL_PLUS)
+			pf->flags &= ~PF_FL_SPACE;
+		len = pf_dtoa(&str_num, num, pf->prec);
+		(!ft_isdigit(str_num[1])) ? pf_double_invalid_str(pf, str_num, len) :
+						pf_double_handle_flags(pf, str_num, len);
+	}
 	ft_strdel(&str_num);
 }

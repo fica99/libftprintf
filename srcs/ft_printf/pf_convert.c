@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:18:04 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/19 15:31:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 16:45:07 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ intmax_t	pf_convert_unb(t_pf_mod_len mod, intmax_t num)
 		return ((unsigned int)num);
 }
 
-size_t	pf_get_nb_size(t_pf_mod_len mod)
+size_t		pf_get_nb_size(t_pf_mod_len mod)
 {
-		if (mod == PF_ML_INIT)
+	if (mod == PF_ML_INIT)
 		return (sizeof(int));
 	else if (mod == PF_ML_H)
 		return (sizeof(short));
@@ -70,7 +70,7 @@ size_t	pf_get_nb_size(t_pf_mod_len mod)
 		return (sizeof(int));
 }
 
-size_t	pf_get_unb_size(t_pf_mod_len mod)
+size_t		pf_get_unb_size(t_pf_mod_len mod)
 {
 	if (mod == PF_ML_H)
 		return (sizeof(unsigned short));
@@ -88,12 +88,13 @@ size_t	pf_get_unb_size(t_pf_mod_len mod)
 		return (sizeof(unsigned int));
 }
 
-char	*pf_get_bits(size_t size, void *ptr)
+char		*pf_get_bits(size_t size, void *ptr)
 {
 	unsigned char	*b;
 	char			*str;
 	int				i;
 	int				j;
+	int				k;
 
 	if (!size || !ptr)
 		return (NULL);
@@ -101,11 +102,12 @@ char	*pf_get_bits(size_t size, void *ptr)
 		exit(EXIT_FAILURE);
 	b = (unsigned char*)ptr;
 	i = size;
+	k = 0;
 	while (--i >= 0)
 	{
 		j = 8;
 		while (--j >= 0)
-			*(str++) = ((b[i] >> j) & 1)? '1' : '0';
+			str[k++] = ((b[i] >> j) & 1) ? '1' : '0';
 	}
-	return (str - size * 8);
+	return (str);
 }
