@@ -3,6 +3,6 @@
 int main(void)
 {
 	int	a;
-	ft_printf("%p\n", &a);
+	ft_printf("%bu\n", 10);
 	return (0);
 }
