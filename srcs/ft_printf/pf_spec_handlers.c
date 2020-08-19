@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 15:32:11 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:44:55 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	pf_spec_p(t_printf *restrict pf)
 	if (pf->flags & PF_FL_MINUS)
 		pf->flags &= ~PF_FL_ZERO;
 	num = va_arg(pf->argptr, intmax_t);
-	str = ft_ultoa_base(num, 16, 'a');
+	str = ft_ultoa_base(num, (pf->flags & PF_FL_BIN) ? 2 : 16, 'a');
 	pf_handle_p(pf, num, str);
 }

@@ -2,6 +2,7 @@
 
 int main(void)
 {
-	ft_printf("%bd\n", 1);
+	int	a;
+	ft_printf("%p\n", &a);
 	return (0);
 }
