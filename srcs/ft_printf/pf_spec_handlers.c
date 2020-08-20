@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/20 11:27:35 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/20 18:35:21 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	pf_spec_s(t_printf *restrict pf)
 	char		*bits;
 
 	str = va_arg(pf->argptr, char*);
-	if (!str)
-		str = pf_get_str_null(pf);
 	if (pf->flags & PF_FL_BIN)
 	{
 		bits = pf_get_bits(ft_strlen(str) * sizeof(char), (void*)str);
