@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 19:38:24 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 21:28:01 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/20 09:50:10 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void		pf_parse_string(const char *restrict format, t_printf *restrict pf)
 		pf_parse_width(format, pf);
 		pf_parse_precision(format, pf);
 		pf_parse_mod(format, pf);
+		if (!format[pf->i])
+			return ;
 		if ((f = pf_spec_table(format[(pf->i)++])))
 			f(pf);
 		return ;

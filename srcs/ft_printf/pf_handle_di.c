@@ -6,7 +6,7 @@
 /*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:16:46 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/19 23:12:53 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/20 09:05:20 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void		pf_handle_di(t_printf *restrict pf, intmax_t nb, char *str)
 	if (pf->flags & PF_FL_MINUS)
 		pf_align_to_width(pf, ' ', len_opts);
 	ft_strdel(&str);
+	ft_memdel((void**)&len_opts);
 }

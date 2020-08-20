@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_o.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 22:31:39 by ggrimes           #+#    #+#             */
-/*   Updated: 2020/08/18 23:21:31 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/08/20 09:05:33 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void		pf_handle_o(t_printf *restrict pf, intmax_t nb, char *str)
 	if (pf->flags & PF_FL_MINUS)
 		pf_align_to_width(pf, ' ', len_opts);
 	ft_strdel(&str);
+	ft_memdel((void**)&len_opts);
 }

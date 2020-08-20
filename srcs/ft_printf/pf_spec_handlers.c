@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_spec_handlers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 15:44:55 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/20 10:16:31 by olegmulko        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	pf_spec_c(t_printf *restrict pf)
 	}
 	else
 	{
-		buff[0] = chrcter;
+		if (!chrcter || chrcter == -0)
+			buff[0] = '\x00';
+		else
+			buff[0] = chrcter;
 		buff[1] = 0;
 		pf_add_str(pf, buff);
 	}
@@ -39,6 +42,8 @@ void	pf_spec_s(t_printf *restrict pf)
 	char		*bits;
 
 	str = va_arg(pf->argptr, char*);
+	if (!str)
+		str = pf_get_str_null(pf);
 	if (pf->flags & PF_FL_BIN)
 	{
 		bits = pf_get_bits(ft_strlen(str) * sizeof(char), (void*)str);
