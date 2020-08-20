@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_spec_handlers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olegmulko <olegmulko@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 21:06:45 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/20 10:16:31 by olegmulko        ###   ########.fr       */
+/*   Updated: 2020/08/20 11:27:35 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	pf_spec_c(t_printf *restrict pf)
 	}
 	else
 	{
-		if (!chrcter || chrcter == -0)
-			buff[0] = '\x00';
-		else
-			buff[0] = chrcter;
+		buff[0] = chrcter;
 		buff[1] = 0;
 		pf_add_str(pf, buff);
 	}
