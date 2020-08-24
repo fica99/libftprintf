@@ -6,7 +6,7 @@
 /*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:42:59 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/07 16:41:47 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/24 16:22:28 by aashara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ int				ft_pathcmp(char *p1, char *p2);
 char			*ft_pathjoin(char *s1, char *s2);
 double			ft_pow(double num, short pow);
 int				ft_abs(int num);
+void			ft_perror(const char *msg, int is_exit);
+int				ft_isnum(const char *str);
 
 #endif
