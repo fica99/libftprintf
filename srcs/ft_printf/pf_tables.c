@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_tables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:51:10 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/19 00:04:00 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/28 21:15:17 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			*pf_spec_table(const char c)
 	if (!is_init)
 	{
 		table['c'] = (void*)&pf_spec_c;
+		table['C'] = (void*)&pf_spec_c;
 		table['%'] = (void*)&pf_spec_percent;
 		table['s'] = (void*)&pf_spec_s;
 		table['d'] = (void*)&pf_spec_int;
@@ -66,8 +67,6 @@ void			*pf_spec_table(const char c)
 		table['o'] = (void*)&pf_spec_o;
 		table['u'] = (void*)&pf_spec_uint;
 		table['f'] = (void*)&pf_spec_small_f;
-		// table['e'] = ;
-		// table['g'] = ;
 		is_init = TRUE;
 	}
 	return (table[(size_t)c]);
