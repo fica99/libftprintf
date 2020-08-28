@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_handle_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 14:30:05 by olegmulko         #+#    #+#             */
-/*   Updated: 2020/08/20 18:31:42 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/28 18:21:06 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,31 @@ void	pf_align_to_accuracy(t_printf *restrict pf, char c,
 		pf->buff[(pf->buff_len)++] = c;
 		i++;
 	}
+}
+
+void	pf_add_chr(t_printf *restrict pf, char *str)
+{
+	size_t	len;
+
+	if (!str)
+		str = "(null)";
+	len = 1;
+	pf_check_mem(pf, pf->width + len);
+	if (pf->prec >= 0 && len > (size_t)pf->prec)
+		len = pf->prec;
+	if (pf->flags & PF_FL_MINUS)
+	{
+		pf_add_chr_2_buff(pf, *str);
+		pf_add_symb(pf, ' ', len);
+	}
+	else
+	{
+		pf_add_symb(pf, pf->flags & PF_FL_ZERO ? '0' : ' ', len);
+		pf_add_chr_2_buff(pf, *str);
+	}
+}
+
+void	pf_add_chr_2_buff(t_printf *restrict pf, char chr)
+{
+	pf->buff[pf->buff_len++] = chr;
 }
