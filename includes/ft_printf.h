@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aashara- <aashara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/20 18:32:01 by aashara-         ###   ########.fr       */
+/*   Updated: 2020/08/28 17:35:36 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ void				pf_align_to_width(t_printf *restrict pf, char c,
 	t_len_opts	*len_opts);
 void				pf_align_to_accuracy(t_printf *restrict pf, char c,
 	t_len_opts *len_opts);
+void				pf_add_chr(t_printf *restrict pf, char *str);
+void				pf_add_chr_2_buff(t_printf *restrict pf, char chr);
 /*
 **					pf_handle_o.c
 */
