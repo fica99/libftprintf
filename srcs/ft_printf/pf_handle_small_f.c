@@ -66,7 +66,7 @@ void		pf_spec_small_f(t_printf *restrict pf)
 	char		*str_num;
 	size_t		len;
 
-	num = ((pf->mod & PF_ML_BL) ? va_arg(pf->argptr, long double) :
+	num = ((pf->mod == PF_ML_BL) ? va_arg(pf->argptr, long double) :
 											va_arg(pf->argptr, double));
 	if (pf->flags & PF_FL_BIN)
 	{
