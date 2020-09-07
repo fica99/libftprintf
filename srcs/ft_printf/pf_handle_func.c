@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 14:30:05 by olegmulko         #+#    #+#             */
-/*   Updated: 2020/08/28 20:35:07 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/09/07 22:29:53 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,24 @@ void	pf_add_chr_2_buff(t_printf *restrict pf, char chr)
 	pf->buff[pf->buff_len++] = chr;
 }
 
-void	pf_parse_undefined(const char *restrict format, t_printf *restrict pf)
+// void	pf_parse_undefined(const char *restrict format, t_printf *restrict pf)
+// {
+// 	if (format[pf->i] == '*' || format[pf->i] == '$')
+// 	{
+// 		while (format[pf->i])
+// 			pf->i++;
+// 		pf->buff_len = 0;
+// 	}
+// }
+
+char	pf_parse_undefined(const char *restrict format, t_printf *restrict pf)
 {
 	if (format[pf->i] == '*' || format[pf->i] == '$')
 	{
 		while (format[pf->i])
 			pf->i++;
 		pf->buff_len = 0;
+		return (1);
 	}
+	return (0);
 }

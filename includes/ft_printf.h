@@ -6,7 +6,7 @@
 /*   By: ggrimes <ggrimes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 22:12:31 by aashara-          #+#    #+#             */
-/*   Updated: 2020/08/28 21:21:06 by ggrimes          ###   ########.fr       */
+/*   Updated: 2020/09/07 22:34:57 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,16 @@ int					ft_dprintf(int fd, const char *restrict format, ...);
 */
 void				pf_parse_string(const char *restrict format,
 											t_printf *restrict pf);
+
+char				pf_parse_flags(const char *restrict format,
+											t_printf *restrict pf);
+char				pf_parse_width(const char *restrict format,
+											t_printf *restrict pf);
+char				pf_parse_precision(const char *restrict format,
+											t_printf *restrict pf);
+char				pf_parse_mod(const char *restrict format,
+											t_printf *restrict pf);
+
 /*
 **					pf_tables.c
 */
@@ -199,8 +209,10 @@ void				pf_align_to_accuracy(t_printf *restrict pf, char c,
 	t_len_opts *len_opts);
 void				pf_add_chr(t_printf *restrict pf, char *str);
 void				pf_add_chr_2_buff(t_printf *restrict pf, char chr);
-void				pf_parse_undefined(const char *restrict format,
-	t_printf *restrict pf);
+// void				pf_parse_undefined(const char *restrict format,
+// 	t_printf *restrict pf);
+char				pf_parse_undefined(const char *restrict format,
+												t_printf *restrict pf);
 /*
 **					pf_handle_o.c
 */
@@ -209,4 +221,9 @@ void				pf_handle_o(t_printf *restrict pf, intmax_t nb, char *str);
 **					pf_parse_color.c
 */
 char				pf_parse_color(const char *format, t_printf *pf);
+/*
+**					pf_parse_params_str.c
+*/
+char				pf_parse_params_str(const char *restrict format,
+													t_printf *restrict pf);
 #endif
