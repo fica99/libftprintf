@@ -1,6 +1,11 @@
 # Libftprintf
 
+![Example](https://i.ibb.co/L9B6pSz/Screen-Shot-2020-11-13-at-2-51-09-PM.png)
+
+
 My implementation of some of the Standard C Library functions including some additional ones.
+Look at the [subject](https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf)
+
 
 ## What is **libft**?
 
